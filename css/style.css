@@ -1,0 +1,1749 @@
+/* ==========================================================
+   Minisito Concorso Illustramente 2026/2027
+   ----------------------------------------------------------
+   PRONTO PER WORDPRESS
+   - Ogni regola è "chiusa" dentro la classe .ic: nella bozza
+     .ic è sul <body>, in WordPress la aggiunge il modello di
+     pagina "Minisito Concorso". Così questo foglio non tocca
+     il resto del sito e il tema (Avada) non sovrascrive il
+     minisito.
+   - Tutte le classi hanno il prefisso ic- per non scontrarsi
+     con le classi del tema e dei plugin.
+   - Colori, misure e font sono variabili (sezione 0).
+
+   Indice
+   0. Variabili e base        8. Bando: riquadro "Leggi il bando"
+   1. Struttura e utilità     9. Form (contatti e iscrizione)
+   2. Pulsanti               10. Pagine interne (testata)
+   3. Header e menu          11. Pagina Bando
+   4. Hero                   12. Pagina Partner
+   5. Card                   13. Pagina Giurie
+   6. Presentazione (home)   14. Pagina Iscriviti
+   7. Indice laterale        15. Footer
+                             16. Responsive
+   ========================================================== */
+
+/* ---------- 0. Variabili e base ---------- */
+.ic {
+  --ic-navy: #2d4373;
+  --ic-navy-dark: #1f2f55;
+  --ic-blue: #3f74bd;
+  --ic-sky: #eaf1fb;
+  --ic-sky-2: #f5f8fd;
+  --ic-orange: #ff6a00;        /* arancio del marchio: solo decorazioni */
+  --ic-orange-strong: #c84b00; /* pulsanti e testi: contrasto AA con il bianco (4,7:1) */
+  --ic-orange-dark: #a63e00;   /* hover dei pulsanti arancio */
+  --ic-teal: #22748f;
+  --ic-teal-dark: #195b71;
+  --ic-text: #2b2b2b;
+  --ic-muted: #5d6675;
+  --ic-border: #d9dde3;
+  --ic-input-border: #b9c0cc;
+  --ic-white: #ffffff;
+  --ic-yellow-soft: #fff4c9;
+  --ic-pink-soft: #fbdcdc;
+  --ic-mint-soft: #d8efec;
+  --ic-success-ink: #14504a;
+  --ic-error: #b42318;
+  --ic-error-soft: #fdecea;
+
+  --ic-radius: 22px;
+  --ic-radius-sm: 12px;
+  --ic-container: 1120px;
+  --ic-shadow: 0 6px 24px rgba(45, 67, 115, .10);
+  --ic-header-h: 74px;
+  /* distanza dall'alto delle colonne laterali che restano ferme mentre si scorre */
+  --ic-sticky-top: calc(var(--ic-header-h) + 24px);
+
+  --ic-font-head: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  --ic-font-body: "Open Sans", Arial, sans-serif;
+
+  margin: 0;
+  font-family: var(--ic-font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ic-text);
+  background: var(--ic-white);
+}
+
+/* Questo foglio viene caricato solo sulle pagine del minisito */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+.ic *,
+.ic *::before,
+.ic *::after {
+  box-sizing: border-box;
+}
+
+.ic [hidden] {
+  display: none !important;
+}
+
+.ic img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ic a {
+  color: var(--ic-teal);
+}
+
+.ic a:hover {
+  color: var(--ic-teal-dark);
+}
+
+.ic h1,
+.ic h2,
+.ic h3,
+.ic h4 {
+  font-family: var(--ic-font-head);
+  color: var(--ic-navy);
+  line-height: 1.15;
+  margin: 0 0 .5em;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.ic h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+.ic h2 {
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+}
+
+.ic h3,
+.ic h4 {
+  font-size: 1.35rem;
+}
+
+.ic p {
+  margin: 0 0 1em;
+}
+
+.ic ul {
+  list-style: disc;
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+.ic blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ic :focus-visible {
+  outline: 3px solid var(--ic-orange-strong);
+  outline-offset: 3px;
+}
+
+/* ---------- 1. Struttura e utilità ---------- */
+.ic .ic-container {
+  width: min(var(--ic-container), 100% - 40px);
+  margin-inline: auto;
+}
+
+.ic .ic-skip-link {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  z-index: 200;
+  background: var(--ic-navy);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+
+.ic .ic-skip-link:focus {
+  left: 8px;
+}
+
+.ic .ic-section {
+  padding: 80px 0;
+}
+
+.ic .ic-section-alt {
+  background: var(--ic-sky-2);
+}
+
+.ic .ic-section-head {
+  max-width: 720px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+
+.ic .ic-section-head p {
+  color: var(--ic-muted);
+  font-size: 1.08rem;
+}
+
+.ic .ic-section-head-tight {
+  margin-bottom: 12px;
+}
+
+.ic .ic-text-center {
+  text-align: center;
+}
+
+.ic .ic-note {
+  margin-top: 40px;
+  font-weight: 600;
+}
+
+/* Testo letto solo dagli screen reader */
+.ic .ic-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ic .ic-eyebrow {
+  display: inline-block;
+  font-family: var(--ic-font-head);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--ic-orange-strong);
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.ic .ic-eyebrow-light {
+  color: #ffd2b0;
+}
+
+.ic .ic-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.ic .ic-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Contenuto + colonna laterale (pagine Bando e Iscriviti) */
+.ic .ic-layout-aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ---------- 2. Pulsanti ---------- */
+.ic .ic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55em;
+  font-family: var(--ic-font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  text-decoration: none;
+  padding: .85em 1.6em;
+  border-radius: var(--ic-radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s, transform .15s;
+}
+
+.ic .ic-btn:hover {
+  transform: translateY(-2px);
+}
+
+.ic .ic-btn-primary {
+  background: var(--ic-orange-strong);
+  color: #fff;
+}
+
+.ic .ic-btn-primary:hover {
+  background: var(--ic-orange-dark);
+  color: #fff;
+}
+
+.ic .ic-btn-teal {
+  background: var(--ic-teal);
+  color: #fff;
+}
+
+.ic .ic-btn-teal:hover {
+  background: var(--ic-teal-dark);
+  color: #fff;
+}
+
+.ic .ic-btn-outline {
+  background: transparent;
+  color: var(--ic-teal);
+  border-color: var(--ic-teal);
+}
+
+.ic .ic-btn-outline:hover {
+  background: var(--ic-teal);
+  color: #fff;
+}
+
+.ic .ic-btn-light {
+  background: #fff;
+  color: var(--ic-navy);
+}
+
+.ic .ic-btn-light:hover {
+  background: var(--ic-sky);
+  color: var(--ic-navy);
+}
+
+.ic .ic-btn-small {
+  font-size: .9rem;
+  padding: .45em .9em;
+  border-radius: 8px;
+}
+
+.ic .ic-btn svg {
+  width: 1.2em;
+  height: 1.2em;
+  flex: none;
+}
+
+/* ---------- 3. Header e menu ----------
+   Il menu è una lista <ul><li><a>: è la stessa struttura che
+   genera WordPress (wp_nav_menu), quindi lo stile vale per
+   entrambi. Voce attiva = aria-current="page" (WordPress lo
+   aggiunge da solo). Classi speciali da mettere sulle voci:
+   ic-nav-home (freccia) e ic-nav-cta (pulsante arancio). */
+.ic .ic-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, .96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ic-border);
+}
+
+/* Barra di amministrazione di WordPress (solo utenti collegati) */
+.ic.admin-bar .ic-header {
+  top: 32px;
+}
+
+.ic.admin-bar {
+  --ic-sticky-top: calc(var(--ic-header-h) + 56px);
+}
+
+.ic .ic-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: var(--ic-header-h);
+}
+
+.ic .ic-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ic-navy);
+}
+
+.ic .ic-brand:hover {
+  color: var(--ic-navy);
+}
+
+.ic .ic-brand img {
+  height: 46px;
+  width: auto;
+}
+
+.ic .ic-brand-text {
+  font-family: var(--ic-font-head);
+  font-weight: 700;
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+.ic .ic-brand-text small {
+  display: block;
+  font-size: .62rem;
+  letter-spacing: .08em;
+  color: var(--ic-muted);
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.ic .ic-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ic .ic-nav-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.ic .ic-nav-list a {
+  display: block;
+  font-family: var(--ic-font-head);
+  font-weight: 700;
+  font-size: .98rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ic-navy);
+  padding: .55em .8em;
+  border-radius: 10px;
+  white-space: nowrap;
+  transition: background .2s, color .2s;
+}
+
+.ic .ic-nav-list a:hover,
+.ic .ic-nav-list a[aria-current="page"] {
+  background: var(--ic-sky);
+  color: var(--ic-navy-dark);
+}
+
+.ic .ic-nav-list .ic-nav-home > a::before {
+  content: "← ";
+}
+
+.ic .ic-nav-list .ic-nav-cta > a {
+  background: var(--ic-orange-strong);
+  color: #fff;
+  margin-left: 8px;
+}
+
+.ic .ic-nav-list .ic-nav-cta > a:hover,
+.ic .ic-nav-list .ic-nav-cta > a[aria-current="page"] {
+  background: var(--ic-orange-dark);
+  color: #fff;
+}
+
+.ic .ic-nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--ic-border);
+  border-radius: 10px;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  cursor: pointer;
+  color: var(--ic-navy);
+}
+
+.ic .ic-nav-toggle span,
+.ic .ic-nav-toggle span::before,
+.ic .ic-nav-toggle span::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  margin: auto;
+  position: relative;
+  transition: .2s;
+}
+
+.ic .ic-nav-toggle span::before,
+.ic .ic-nav-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.ic .ic-nav-toggle span::before {
+  top: -7px;
+}
+
+.ic .ic-nav-toggle span::after {
+  top: 7px;
+}
+
+.ic .ic-nav-toggle[aria-expanded="true"] span {
+  background: transparent;
+}
+
+.ic .ic-nav-toggle[aria-expanded="true"] span::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.ic .ic-nav-toggle[aria-expanded="true"] span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* ---------- 4. Hero ---------- */
+.ic .ic-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 0 120px;
+  background:
+    radial-gradient(circle at 8% 12%, var(--ic-yellow-soft) 0 90px, transparent 91px),
+    radial-gradient(circle at 96% 70%, var(--ic-pink-soft) 0 130px, transparent 131px),
+    radial-gradient(circle at 80% 8%, var(--ic-mint-soft) 0 70px, transparent 71px),
+    linear-gradient(180deg, #fff 0%, var(--ic-sky) 100%);
+}
+
+.ic .ic-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ic .ic-hero h1 {
+  margin-bottom: .35em;
+}
+
+.ic .ic-hero h1 em {
+  font-style: normal;
+  color: var(--ic-blue);
+}
+
+.ic .ic-hero .ic-lead {
+  font-size: 1.15rem;
+  color: var(--ic-muted);
+  max-width: 54ch;
+}
+
+.ic .ic-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.ic .ic-hero-visual {
+  position: relative;
+  border-radius: var(--ic-radius);
+  overflow: hidden;
+  box-shadow: var(--ic-shadow);
+  border: 1px solid var(--ic-border);
+  background: var(--ic-sky);
+}
+
+.ic .ic-hero-visual img {
+  width: 100%;
+  height: auto;
+}
+
+.ic .ic-hero-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+/* ---------- 5. Card ---------- */
+.ic .ic-card {
+  background: #fff;
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius);
+  padding: 32px;
+}
+
+.ic .ic-card .ic-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--ic-sky);
+  color: var(--ic-navy);
+  font-family: var(--ic-font-head);
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+
+.ic .ic-card-sub {
+  font-family: var(--ic-font-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ic-blue);
+  margin: -4px 0 14px;
+}
+
+/* ---------- 6. Presentazione (home) ---------- */
+.ic .ic-bando-head {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 56px;
+}
+
+.ic .ic-bando-head-title {
+  font-family: var(--ic-font-head);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  color: var(--ic-navy);
+  line-height: 1.1;
+  margin: 0 0 40px;
+  padding-bottom: 14px;
+}
+
+.ic .ic-bando-head-org,
+.ic .ic-bando-head-verb,
+.ic .ic-bando-head-theme {
+  font-family: var(--ic-font-head);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ic-navy);
+  margin: 0;
+}
+
+.ic .ic-bando-head-org {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  line-height: 1.35;
+  margin-bottom: 36px;
+}
+
+.ic .ic-bando-head-verb {
+  font-size: clamp(1.3rem, 2.8vw, 1.7rem);
+  margin-bottom: 36px;
+}
+
+.ic .ic-bando-head-theme {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  line-height: 1.3;
+}
+
+/* Citazione di Camus: in tondo e leggibile (non tutta maiuscola) */
+.ic .ic-bando-head-quote {
+  max-width: 60ch;
+  margin: 14px auto 0;
+  font-family: var(--ic-font-head);
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ic-navy);
+}
+
+.ic .ic-bando-head-quote p {
+  margin: 0;
+}
+
+.ic .ic-bando-head-quote cite {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.ic .ic-bando-head-sub {
+  font-family: var(--ic-font-head);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ic-muted);
+  margin: 2px 0 34px;
+}
+
+.ic .ic-presentation {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.ic .ic-article-block {
+  padding-bottom: 36px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--ic-border);
+}
+
+.ic .ic-article-block:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* ---------- 7. Indice laterale (home) ---------- */
+.ic .ic-toc {
+  border-left: 3px solid var(--ic-border);
+  padding-left: 18px;
+}
+
+/* Colonne laterali (home, Bando, Iscriviti): restano ferme mentre si scorre solo se
+   ci stanno per intero nella finestra. La classe ic-is-sticky la mette js/main.js:
+   così non serve una barra di scorrimento interna e niente resta tagliato. */
+@media (min-width: 981px) {
+  .ic .ic-toc.ic-is-sticky,
+  .ic .ic-side-card.ic-is-sticky {
+    position: sticky;
+    top: var(--ic-sticky-top);
+  }
+}
+
+.ic .ic-toc p {
+  font-family: var(--ic-font-head);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ic-muted);
+  font-size: .9rem;
+  margin-bottom: 8px;
+  letter-spacing: .06em;
+}
+
+.ic .ic-toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--ic-navy);
+  padding: 4px 0;
+  font-weight: 600;
+  font-size: .95rem;
+}
+
+.ic .ic-toc a:hover {
+  color: var(--ic-orange-strong);
+}
+
+.ic .ic-toc-partners {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ic-border);
+}
+
+.ic .ic-toc-logos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.ic .ic-toc-logos li {
+  margin: 0;
+}
+
+.ic .ic-toc .ic-toc-logos a {
+  display: grid;
+  place-items: center;
+  height: 72px;
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius-sm);
+  transition: box-shadow .2s, transform .2s;
+}
+
+.ic .ic-toc .ic-toc-logos a:hover {
+  box-shadow: var(--ic-shadow);
+  transform: translateY(-2px);
+}
+
+.ic .ic-toc-logos img {
+  max-width: 100%;
+  max-height: 54px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ---------- 8. Bando: riquadro "Leggi il bando" ---------- */
+.ic .ic-bando-box {
+  background: linear-gradient(135deg, var(--ic-navy) 0%, var(--ic-blue) 100%);
+  color: #fff;
+  border-radius: var(--ic-radius);
+  padding: 56px 48px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 36px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ic .ic-bando-box::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+}
+
+.ic .ic-bando-box h2 {
+  color: #fff;
+}
+
+.ic .ic-bando-box p {
+  color: #e3ebf9;
+  margin: 0;
+}
+
+.ic .ic-bando-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.ic .ic-cta-final {
+  text-align: center;
+}
+
+.ic .ic-cta-final .ic-btn {
+  margin-top: 10px;
+}
+
+/* ---------- 9. Form (contatti e iscrizione) ---------- */
+.ic .ic-contact {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.ic .ic-contact-info p {
+  color: var(--ic-muted);
+}
+
+.ic .ic-form {
+  background: #fff;
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius);
+  padding: 32px;
+}
+
+.ic .ic-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.ic .ic-form-row-3 {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.ic .ic-field {
+  margin-bottom: 18px;
+}
+
+.ic .ic-field label,
+.ic .ic-group legend {
+  display: block;
+  font-weight: 600;
+  font-size: .92rem;
+  margin-bottom: 6px;
+  color: var(--ic-navy);
+}
+
+.ic .ic-field input,
+.ic .ic-field select,
+.ic .ic-field textarea {
+  width: 100%;
+  font: inherit;
+  line-height: 1.5;
+  height: auto;
+  margin: 0;
+  padding: .75em .9em;
+  border: 1px solid var(--ic-input-border);
+  border-radius: var(--ic-radius-sm);
+  background: #fff;
+  color: var(--ic-text);
+  box-shadow: none;
+}
+
+.ic .ic-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.ic .ic-field input:focus,
+.ic .ic-field select:focus,
+.ic .ic-field textarea:focus {
+  border-color: var(--ic-teal);
+  outline: 3px solid rgba(34, 116, 143, .2);
+}
+
+.ic .ic-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: .9rem;
+  color: var(--ic-muted);
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.ic .ic-check input {
+  margin-top: 5px;
+  flex: none;
+  accent-color: var(--ic-teal);
+}
+
+.ic .ic-check + .ic-field-error {
+  margin: -14px 0 18px;
+}
+
+/* Campo trappola anti-spam: invisibile alle persone */
+.ic .ic-hp {
+  position: absolute;
+  left: -9999px;
+}
+
+.ic .ic-hint {
+  display: block;
+  font-size: .85rem;
+  font-weight: 400;
+  color: var(--ic-muted);
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+/* suggerimento fra etichetta e campo: spazio sotto, così il bordo del campo attivo non copre il testo */
+.ic .ic-field label + .ic-hint {
+  margin-top: -2px;
+  margin-bottom: 10px;
+}
+
+.ic .ic-field-error {
+  display: block;
+  color: var(--ic-error);
+  font-size: .86rem;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 6px 0 0;
+}
+
+.ic .is-invalid > input,
+.ic .is-invalid > select,
+.ic .is-invalid > textarea {
+  border-color: var(--ic-error);
+}
+
+.ic .ic-form-status {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: var(--ic-radius-sm);
+  background: var(--ic-mint-soft);
+  color: var(--ic-success-ink);
+  display: none;
+}
+
+.ic .ic-form-status.is-visible {
+  display: block;
+}
+
+/* ---------- 10. Pagine interne (testata) ---------- */
+.ic .ic-page-hero {
+  padding: 56px 0 48px;
+  background: linear-gradient(180deg, #fff, var(--ic-sky));
+  border-bottom: 1px solid var(--ic-border);
+}
+
+.ic .ic-page-hero .ic-lead {
+  color: var(--ic-muted);
+  max-width: 60ch;
+}
+
+.ic .ic-breadcrumb {
+  font-size: .9rem;
+  color: var(--ic-muted);
+  margin-bottom: 14px;
+}
+
+.ic .ic-breadcrumb a {
+  color: var(--ic-muted);
+}
+
+/* ---------- 11. Pagina Bando ---------- */
+.ic .ic-bando-content h2 {
+  margin-top: 1.4em;
+  font-size: 1.8rem;
+}
+
+.ic .ic-bando-content h2:first-child {
+  margin-top: 0;
+}
+
+.ic .ic-bando-content [id^="art-"] {
+  scroll-margin-top: 100px;
+}
+
+.ic .ic-side-card {
+  padding: 24px;
+}
+
+.ic .ic-side-card .ic-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: .7em 1.2em;
+}
+
+.ic .ic-key-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+
+.ic .ic-key-facts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  margin: 0;
+  border-bottom: 1px dashed var(--ic-border);
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+.ic .ic-key-facts li span:first-child {
+  color: var(--ic-muted);
+}
+
+.ic .ic-key-facts li strong {
+  color: var(--ic-navy);
+  text-align: right;
+}
+
+.ic .ic-side-toc {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ic-border);
+}
+
+.ic .ic-side-toc p {
+  font-family: var(--ic-font-head);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ic-muted);
+  font-size: .85rem;
+  letter-spacing: .06em;
+  margin-bottom: 6px;
+}
+
+.ic .ic-side-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ic .ic-side-toc li {
+  margin: 0;
+}
+
+.ic .ic-side-toc a {
+  display: block;
+  padding: 3px 0;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--ic-navy);
+  text-decoration: none;
+}
+
+.ic .ic-side-toc a:hover {
+  color: var(--ic-orange-strong);
+}
+
+/* ---------- 12. Pagina Partner ---------- */
+.ic .ic-partner-group + .ic-partner-group {
+  margin-top: 56px;
+}
+
+.ic .ic-partner-group > h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.ic .ic-partner-list {
+  display: grid;
+  gap: 24px;
+}
+
+.ic .ic-partner-card {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.ic .ic-partner-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: .3em;
+}
+
+.ic .ic-partner-logo {
+  display: grid;
+  place-items: center;
+  min-height: 140px;
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius-sm);
+  background: #fff;
+  padding: 16px;
+}
+
+.ic .ic-partner-logo img {
+  max-height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ---------- 13. Pagina Giurie ---------- */
+.ic .ic-person {
+  text-align: center;
+}
+
+.ic .ic-person h3 {
+  font-size: 1.2rem;
+  margin-bottom: .15em;
+}
+
+.ic .ic-person .ic-role {
+  color: var(--ic-muted);
+  font-size: .92rem;
+  margin: 0;
+}
+
+/* ---------- 14. Pagina Iscriviti ---------- */
+.ic .ic-alert {
+  padding: 14px 18px;
+  border-radius: var(--ic-radius-sm);
+  border: 1px solid #f1dc8a;
+  background: var(--ic-yellow-soft);
+  color: #4d3d00;
+  font-size: .95rem;
+  margin-bottom: 24px;
+}
+
+.ic .ic-alert p:last-child {
+  margin-bottom: 0;
+}
+
+.ic .ic-alert-info {
+  border-color: #cfdcf0;
+  background: var(--ic-sky);
+  color: var(--ic-navy);
+}
+
+.ic .ic-error-summary {
+  border: 2px solid var(--ic-error);
+  background: var(--ic-error-soft);
+  border-radius: var(--ic-radius-sm);
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  color: var(--ic-error);
+}
+
+.ic .ic-error-summary:focus {
+  outline: 3px solid var(--ic-error);
+  outline-offset: 3px;
+}
+
+.ic .ic-error-summary ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.ic .ic-error-summary a {
+  color: var(--ic-error);
+  font-weight: 600;
+}
+
+.ic .ic-step {
+  background: #fff;
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius);
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.ic .ic-step-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.ic .ic-step-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--ic-sky);
+  color: var(--ic-navy);
+  font-size: 1.15rem;
+}
+
+.ic .ic-step-intro {
+  color: var(--ic-muted);
+  margin-top: -6px;
+}
+
+.ic .ic-group {
+  border: 0;
+  padding: 0;
+  margin: 0 0 18px;
+  min-width: 0;
+}
+
+.ic .ic-group legend {
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.ic .ic-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Scelte in elenco (passo 3): una riga per opzione, titoli e descrizioni allineati in colonna */
+.ic .ic-choices-list {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  container-type: inline-size;
+}
+
+.ic .ic-choices-list .ic-choice {
+  align-items: center;
+  padding: 13px 18px;
+}
+
+.ic .ic-choices-list .ic-choice input {
+  margin-top: 0;
+}
+
+.ic .ic-choices-list .ic-choice > span {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 11em minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 16px;
+}
+
+.ic .ic-choices-list .ic-choice-desc {
+  margin-top: 0;
+}
+
+/* se il modulo è stretto (telefono, finestra piccola) la descrizione va sotto il titolo */
+@container (max-width: 580px) {
+  .ic .ic-choices-list .ic-choice {
+    align-items: flex-start;
+  }
+
+  .ic .ic-choices-list .ic-choice input {
+    margin-top: 5px;
+  }
+
+  .ic .ic-choices-list .ic-choice > span {
+    display: block;
+  }
+
+  .ic .ic-choices-list .ic-choice-desc {
+    margin-top: 2px;
+  }
+}
+
+.ic .ic-choice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  margin: 0;
+  border: 1px solid var(--ic-input-border);
+  border-radius: var(--ic-radius-sm);
+  background: #fff;
+  cursor: pointer;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+
+.ic .ic-choice:hover {
+  border-color: var(--ic-teal);
+}
+
+.ic .ic-choice:has(input:checked) {
+  border-color: var(--ic-teal);
+  background: #eef6f8;
+  box-shadow: inset 0 0 0 1px var(--ic-teal);
+}
+
+.ic .ic-choice input {
+  flex: none;
+  margin-top: 5px;
+  accent-color: var(--ic-teal);
+}
+
+.ic .ic-choice-title {
+  display: block;
+  font-family: var(--ic-font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ic-navy);
+}
+
+.ic .ic-choice-desc {
+  display: block;
+  margin-top: 4px;
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--ic-muted);
+}
+
+.ic .ic-group.is-invalid .ic-choice {
+  border-color: var(--ic-error);
+}
+
+/* Blocchi che compaiono in base alle scelte */
+.ic .ic-sub {
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius-sm);
+  background: var(--ic-sky-2);
+}
+
+.ic .ic-sub > :last-child {
+  margin-bottom: 0;
+}
+
+.ic .ic-sub-title {
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+}
+
+.ic .ic-file input[type="file"] {
+  padding: 14px;
+  border: 2px dashed var(--ic-input-border);
+  background: #fff;
+  cursor: pointer;
+  font-size: .92rem;
+}
+
+.ic .ic-file input[type="file"]::file-selector-button {
+  font-family: var(--ic-font-head);
+  font-weight: 700;
+  font-size: .95rem;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 8px;
+  padding: .55em 1.1em;
+  margin-right: 12px;
+  background: var(--ic-teal);
+  color: #fff;
+  cursor: pointer;
+}
+
+.ic .ic-file-info {
+  font-size: .86rem;
+  font-weight: 600;
+  color: var(--ic-success-ink);
+  margin: 6px 0 0;
+}
+
+.ic .ic-file-info:empty {
+  display: none;
+}
+
+.ic .ic-counter {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 600;
+  background: var(--ic-sky);
+  color: var(--ic-navy);
+}
+
+.ic .ic-counter.is-ok {
+  background: var(--ic-mint-soft);
+  color: var(--ic-success-ink);
+}
+
+.ic .ic-counter.is-ko {
+  background: var(--ic-error-soft);
+  color: var(--ic-error);
+}
+
+.ic .ic-pay {
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  border: 1px dashed var(--ic-teal);
+  border-radius: var(--ic-radius-sm);
+  background: #fff;
+}
+
+.ic .ic-pay-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+}
+
+.ic .ic-pay-row span {
+  min-width: 90px;
+  color: var(--ic-muted);
+  font-size: .9rem;
+}
+
+.ic .ic-pay code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ic-navy);
+  background: none;
+  padding: 0;
+  word-break: break-all;
+}
+
+.ic .ic-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.ic .ic-recap {
+  margin: 10px 0 0;
+  padding-left: 20px;
+}
+
+.ic .ic-checklist {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+
+.ic .ic-checklist li {
+  position: relative;
+  margin: 0;
+  padding: 8px 0 8px 28px;
+  border-bottom: 1px dashed var(--ic-border);
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+.ic .ic-checklist li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 13px;
+  width: 14px;
+  height: 8px;
+  border-left: 3px solid var(--ic-teal);
+  border-bottom: 3px solid var(--ic-teal);
+  transform: rotate(-45deg);
+}
+
+.ic .ic-side-card h3 {
+  font-size: 1.3rem;
+}
+
+/* ---------- 15. Footer (come illustramente.it) ---------- */
+.ic .ic-footer {
+  background: #282a2b;
+  color: #fff;
+  padding: 0;
+}
+
+.ic .ic-footer a {
+  color: #fff;
+}
+
+.ic .ic-footer-top {
+  background: #363839;
+  padding: 40px 0 56px;
+}
+
+.ic .ic-footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  align-items: start;
+  text-align: center;
+}
+
+.ic .ic-footer-col h2 {
+  font-family: var(--ic-font-head);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  letter-spacing: .01em;
+  color: #e6e6e6;
+  margin: 0 0 8px;
+}
+
+.ic .ic-footer-col img {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+}
+
+.ic .ic-footer-col a:hover {
+  opacity: .85;
+}
+
+.ic .ic-footer-policy {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.ic .ic-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: none;
+  padding: 7px 10px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+.ic .ic-footer .ic-pill-dark {
+  background: #454648;
+  color: #fff;
+}
+
+.ic .ic-footer .ic-pill-light {
+  background: #fff;
+  color: #333;
+}
+
+.ic .ic-pill:hover {
+  opacity: .85;
+}
+
+.ic .ic-footer-bottom-bar {
+  border-top: 1px solid #4b4c4d;
+  background: #282a2b;
+  padding: 22px 0 26px;
+}
+
+.ic .ic-footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.ic .ic-footer-bottom-inner p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #fff;
+}
+
+.ic .ic-footer-bottom-inner p a {
+  text-decoration: none;
+}
+
+.ic .ic-footer-bottom-inner p a:hover {
+  text-decoration: underline;
+}
+
+.ic .ic-footer-social {
+  display: flex;
+  gap: 18px;
+}
+
+.ic .ic-footer .ic-footer-social a {
+  color: #8a8c8d;
+  display: inline-flex;
+  transition: color .2s;
+}
+
+.ic .ic-footer .ic-footer-social a:hover {
+  color: #fff;
+}
+
+.ic .ic-footer-social svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- 16. Responsive ---------- */
+/* Menu a tendina: sotto i 1060px le 6 voci non stanno più su una riga */
+@media (max-width: 1060px) {
+  .ic .ic-nav-toggle {
+    display: block;
+  }
+
+  .ic .ic-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: #fff;
+    border-bottom: 1px solid var(--ic-border);
+    padding: 12px 20px 20px;
+    display: none;
+    max-height: calc(100vh - var(--ic-header-h));
+    overflow-y: auto;
+  }
+
+  .ic .ic-nav.is-open {
+    display: block;
+  }
+
+  .ic .ic-nav-list {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ic .ic-nav-list a {
+    padding: .85em 1em;
+  }
+
+  .ic .ic-nav-list .ic-nav-cta > a {
+    margin: 8px 0 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 980px) {
+  .ic .ic-hero-grid,
+  .ic .ic-contact,
+  .ic .ic-bando-box,
+  .ic .ic-layout-aside,
+  .ic .ic-presentation {
+    grid-template-columns: 1fr;
+  }
+
+  .ic .ic-hero-visual {
+    max-width: 520px;
+  }
+
+  .ic .ic-toc {
+    border-left: 0;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+
+  .ic .ic-toc p {
+    width: 100%;
+  }
+
+  .ic .ic-toc-partners {
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .ic .ic-toc-logos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ic .ic-grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* WordPress: sotto i 782px la barra di amministrazione è più alta */
+@media (max-width: 782px) {
+  .ic.admin-bar .ic-header {
+    top: 46px;
+  }
+}
+
+@media (max-width: 760px) {
+  .ic .ic-footer-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .ic .ic-footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .ic .ic-section {
+    padding: 56px 0;
+  }
+
+  .ic .ic-grid-2,
+  .ic .ic-grid-3,
+  .ic .ic-form-row,
+  .ic .ic-choices,
+  .ic .ic-partner-card {
+    grid-template-columns: 1fr;
+  }
+
+  .ic .ic-toc-logos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ic .ic-bando-box {
+    padding: 36px 24px;
+  }
+
+  .ic .ic-hero {
+    padding: 40px 0 100px;
+  }
+
+  .ic .ic-bando-head {
+    margin-bottom: 40px;
+  }
+
+  .ic .ic-bando-head-title {
+    margin-bottom: 28px;
+  }
+
+  .ic .ic-bando-head-org,
+  .ic .ic-bando-head-verb {
+    margin-bottom: 26px;
+  }
+
+  .ic .ic-step,
+  .ic .ic-form {
+    padding: 24px 20px;
+  }
+}
+
+/* WordPress: sotto i 600px la barra di amministrazione non è fissa */
+@media (max-width: 600px) {
+  .ic.admin-bar .ic-header {
+    top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ic *,
+  .ic *::before,
+  .ic *::after {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prepara i contenuti per WordPress</title>
+  <style>
+    :root {
+      --navy: #2d4373; --blue: #3f74bd; --sky: #eaf1fb; --teal: #22748f; --teal-dark: #195b71;
+      --orange: #c84b00; --muted: #5d6675; --border: #d9dde3; --ok: #14504a; --ok-bg: #d8efec; --warn-bg: #fff4c9;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 16px/1.6 "Open Sans", Arial, sans-serif; color: #2b2b2b; background: #f5f8fd; }
+    main { width: min(980px, 100% - 32px); margin: 32px auto 64px; }
+    h1, h2 { font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif; color: var(--navy); line-height: 1.15; }
+    h1 { font-size: 2.2rem; margin: 0 0 .3em; }
+    h2 { font-size: 1.35rem; margin: 0 0 .4em; }
+    .lead { color: var(--muted); margin-top: 0; }
+    .box { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+    label { display: block; font-weight: 600; color: var(--navy); font-size: .92rem; margin-bottom: 4px; }
+    input[type="text"] { width: 100%; font: inherit; padding: .6em .8em; border: 1px solid #b9c0cc; border-radius: 10px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hint { font-size: .85rem; color: var(--muted); margin: 4px 0 0; }
+    .drop { display: block; border: 2px dashed #b9c0cc; border-radius: 12px; padding: 18px; background: #fff; text-align: center; cursor: pointer; }
+    .drop:hover, .drop.is-over { border-color: var(--teal); background: var(--sky); }
+    /* il campo file resta raggiungibile con la tastiera, ma non si vede: si usa il riquadro */
+    .vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); border: 0; }
+    .vh:focus-visible + .drop { outline: 3px solid var(--orange); outline-offset: 2px; }
+    .check { display: flex; gap: 8px; align-items: center; font-weight: 400; color: #2b2b2b; margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; }
+    code { font-family: Consolas, "Courier New", monospace; font-size: .9em; background: var(--sky); padding: 1px 5px; border-radius: 4px; }
+    .result-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+    .tag { display: inline-block; font-size: .8rem; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--sky); color: var(--navy); }
+    textarea { width: 100%; min-height: 180px; margin-top: 12px; font: 12px/1.45 Consolas, "Courier New", monospace; padding: 10px; border: 1px solid #b9c0cc; border-radius: 10px; }
+    button { font: 700 .95rem "Roboto Condensed", "Arial Narrow", Arial, sans-serif; text-transform: uppercase; border: 0; border-radius: 10px; padding: .6em 1.2em; background: var(--teal); color: #fff; cursor: pointer; }
+    button:hover { background: var(--teal-dark); }
+    .warn { background: var(--warn-bg); border: 1px solid #f1dc8a; border-radius: 10px; padding: 10px 14px; margin-top: 12px; font-size: .92rem; }
+    .done { color: var(--ok); font-weight: 600; }
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+    @media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Prepara i contenuti per WordPress</h1>
+    <p class="lead">Questo strumento lavora solo nel tuo browser: non invia nulla. Prende ogni pagina della bozza,
+      tiene solo la parte da incollare in WordPress (tra <code>WP: INIZIO</code> e <code>WP: FINE</code>) e
+      sostituisce link e percorsi con gli indirizzi del sito.</p>
+
+    <section class="box" aria-labelledby="t1">
+      <h2 id="t1">1. Controlla gli indirizzi</h2>
+      <div class="row">
+        <div>
+          <label for="base">Indirizzo della pagina principale del minisito</label>
+          <input type="text" id="base" value="/blog/concorso-2026-2027/">
+          <p class="hint">Le altre pagine diventano <code>…/bando/</code>, <code>…/partner/</code>,
+            <code>…/giurie/</code>, <code>…/iscriviti/</code>.</p>
+        </div>
+        <div>
+          <label for="theme">Cartella del minisito nel tema child</label>
+          <input type="text" id="theme" value="/blog/wp-content/themes/Illustramente2015/concorso/">
+          <p class="hint">Qui si trovano <code>assets/</code> (immagini) e <code>download/</code> (PDF del bando).</p>
+        </div>
+      </div>
+      <label class="check"><input type="checkbox" id="strip" checked> Togli i commenti per gli sviluppatori
+        (<code>&lt;!-- … --&gt;</code>)</label>
+      <label class="check"><input type="checkbox" id="wrap"> Incollerò nell’<strong>editor classico</strong> (scheda
+        “Testo”) o nell’“Editor del codice”: racchiudi il contenuto in un blocco HTML</label>
+      <p class="hint">Lascialo spento se incolli in un blocco “HTML personalizzato” dell’editor a blocchi. Acceso, evita
+        che WordPress aggiunga da solo <code>&lt;p&gt;</code> e <code>&lt;br&gt;</code> dentro il codice.</p>
+    </section>
+
+    <section class="box" aria-labelledby="t2">
+      <h2 id="t2">2. Scegli i file della bozza</h2>
+      <input type="file" id="files" class="vh" accept=".html" multiple>
+      <label class="drop" for="files">Clicca qui (o trascina qui i file) e seleziona insieme <strong>index.html,
+          bando.html, partner.html, giuria.html, iscriviti.html</strong> e, se ti serve,
+        <strong>banner-home.html</strong> (sono nella cartella <code>concorso-2026</code>).</label>
+    </section>
+
+    <section class="box" aria-labelledby="t3">
+      <h2 id="t3">Dove incollare ogni blocco</h2>
+      <table>
+        <thead>
+          <tr><th>File</th><th>Pagina WordPress</th><th>Slug</th><th>Genitore</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>index.html</td><td>Concorso 2026/2027</td><td><code>concorso-2026-2027</code></td><td>—</td></tr>
+          <tr><td>bando.html</td><td>Il bando 2026/2027</td><td><code>bando</code></td><td>Concorso 2026/2027</td></tr>
+          <tr><td>partner.html</td><td>I partner</td><td><code>partner</code></td><td>Concorso 2026/2027</td></tr>
+          <tr><td>giuria.html</td><td>Le giurie</td><td><code>giurie</code></td><td>Concorso 2026/2027</td></tr>
+          <tr><td>iscriviti.html</td><td>Iscriviti</td><td><code>iscriviti</code></td><td>Concorso 2026/2027</td></tr>
+          <tr><td>banner-home.html</td><td colspan="3">Homepage del sito (elemento “Code Block” di Avada o blocco
+              “HTML personalizzato”)</td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Tutte le pagine del minisito usano il modello <strong>Minisito Concorso 2026/2027</strong>.</p>
+    </section>
+
+    <div id="results" aria-live="polite"></div>
+  </main>
+
+  <script>
+    (function () {
+      var ORDER = ['index.html', 'bando.html', 'partner.html', 'giuria.html', 'iscriviti.html', 'banner-home.html'];
+      var TARGET = {
+        'index.html': 'Concorso 2026/2027',
+        'bando.html': 'Il bando 2026/2027',
+        'partner.html': 'I partner',
+        'giuria.html': 'Le giurie',
+        'iscriviti.html': 'Iscriviti',
+        'banner-home.html': 'Homepage del sito'
+      };
+      var START = /<!--\s*=+\s*WP: INIZIO CONTENUTO PAGINA[\s\S]*?-->/;
+      var END = /<!--\s*=+\s*WP: FINE CONTENUTO PAGINA\s*=+\s*-->/;
+
+      function slash(s) { s = s.trim(); return s.charAt(s.length - 1) === '/' ? s : s + '/'; }
+
+      function extract(name, html) {
+        // Banner: via il meta dell'anteprima e i commenti iniziali
+        if (name === 'banner-home.html') return html.replace(/^\s*(<meta[^>]*>)?(\s*<!--[\s\S]*?-->)*\s*/, '');
+        var a = html.search(START), b = html.search(END);
+        if (a === -1 || b === -1) return null;
+        return html.slice(a, b).replace(START, '');
+      }
+
+      function convert(html) {
+        var base = slash(document.getElementById('base').value);
+        var theme = slash(document.getElementById('theme').value);
+        var pages = { 'index.html': '', 'bando.html': 'bando/', 'partner.html': 'partner/', 'giuria.html': 'giurie/', 'iscriviti.html': 'iscriviti/' };
+        Object.keys(pages).forEach(function (file) {
+          html = html.split('href="' + file).join('href="' + base + pages[file]);
+        });
+        html = html.replace(/(src|href)="(assets|download)\//g, function (m, attr, dir) { return attr + '="' + theme + dir + '/'; });
+        if (document.getElementById('strip').checked) html = html.replace(/<!--[\s\S]*?-->/g, '');
+        html = html.replace(/\n{3,}/g, '\n\n').trim();
+        if (document.getElementById('wrap').checked) html = '<!-- wp:html -->\n' + html + '\n<!-- /wp:html -->';
+        return html + '\n';
+      }
+
+      function copy(area, btn) {
+        var ok = function () { btn.textContent = 'Copiato!'; setTimeout(function () { btn.textContent = 'Copia'; }, 1800); };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(area.value).then(ok, function () { area.select(); document.execCommand('copy'); ok(); });
+        } else { area.select(); document.execCommand('copy'); ok(); }
+      }
+
+      function render(list) {
+        var box = document.getElementById('results');
+        box.innerHTML = '';
+        list.sort(function (a, b) { return ORDER.indexOf(a.name) - ORDER.indexOf(b.name); });
+        list.forEach(function (item) {
+          var sec = document.createElement('section');
+          sec.className = 'box';
+          var head = document.createElement('div');
+          head.className = 'result-head';
+          var h = document.createElement('h2');
+          h.textContent = item.name;
+          var tag = document.createElement('span');
+          tag.className = 'tag';
+          tag.textContent = '→ ' + (TARGET[item.name] || 'file non previsto');
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = 'Copia';
+          head.appendChild(h); head.appendChild(tag); head.appendChild(btn);
+          sec.appendChild(head);
+
+          if (item.out === null) {
+            var w = document.createElement('p');
+            w.className = 'warn';
+            w.textContent = 'Non trovo i segnaposto "WP: INIZIO" e "WP: FINE" in questo file.';
+            sec.appendChild(w);
+            btn.disabled = true;
+          } else {
+            var area = document.createElement('textarea');
+            area.value = item.out;
+            area.setAttribute('aria-label', 'Contenuto da incollare per ' + item.name);
+            area.readOnly = true;
+            sec.appendChild(area);
+            btn.addEventListener('click', function () { copy(area, btn); });
+            if (/<form[\s>]/.test(item.out)) {
+              var f = document.createElement('p');
+              f.className = 'warn';
+              f.innerHTML = '<strong>Contiene un modulo.</strong> Dopo averlo incollato, sostituisci tutto il blocco ' +
+                '<code>&lt;form …&gt; … &lt;/form&gt;</code> con lo shortcode del modulo creato in Quform.';
+              sec.appendChild(f);
+            }
+            var d = document.createElement('p');
+            d.className = 'hint done';
+            d.textContent = document.getElementById('wrap').checked
+              ? 'Pronto: incollalo nella scheda "Testo" (editor classico) o nell’Editor del codice della pagina indicata.'
+              : 'Pronto: incollalo in un blocco "HTML personalizzato" della pagina indicata.';
+            sec.appendChild(d);
+          }
+          box.appendChild(sec);
+        });
+      }
+
+      var current = [];
+      function process() {
+        render(current.map(function (f) {
+          var part = extract(f.name, f.text);
+          return { name: f.name, out: part === null ? null : convert(part) };
+        }));
+      }
+
+      function load(fileList) {
+        var files = Array.prototype.filter.call(fileList, function (f) { return /\.html?$/i.test(f.name); });
+        if (!files.length) return;
+        Promise.all(files.map(function (file) {
+          return file.text().then(function (text) { return { name: file.name, text: text }; });
+        })).then(function (list) { current = list; process(); });
+      }
+
+      document.getElementById('files').addEventListener('change', function (e) { load(e.target.files); });
+
+      var drop = document.querySelector('.drop');
+      ['dragenter', 'dragover'].forEach(function (type) {
+        drop.addEventListener(type, function (e) { e.preventDefault(); drop.classList.add('is-over'); });
+      });
+      ['dragleave', 'drop'].forEach(function (type) {
+        drop.addEventListener(type, function () { drop.classList.remove('is-over'); });
+      });
+      drop.addEventListener('drop', function (e) { e.preventDefault(); load(e.dataTransfer.files); });
+      ['base', 'theme', 'strip', 'wrap'].forEach(function (id) {
+        document.getElementById(id).addEventListener('change', function () { if (current.length) process(); });
+      });
+    })();
+  </script>
+</body>
+
+</html>

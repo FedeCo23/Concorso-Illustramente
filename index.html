@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concorso Illustramente 2026/2027 – L'amicizia</title>
+  <meta name="description" content="Terza edizione del concorso di illustrazione e poesia di Illustramente, Fondazione Orestiadi e NaxosLegge: “A come amicizia”. Per scuole ed esordienti.">
+  <!-- In WordPress font, CSS e JS li carica concorso/functions-concorso.php: queste righe non vanno copiate -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Condensed:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+
+<body class="ic">
+  <a class="ic-skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <!-- ============ HEADER + MENU ============
+       In WordPress: concorso/parts/header.php. Il menu è una lista <ul><li><a>
+       come quella generata da WordPress (Aspetto → Menu). -->
+  <header class="ic-header">
+    <div class="ic-container ic-header-inner">
+      <a class="ic-brand" href="index.html">
+        <!-- Per usare il logo: <img src="assets/img/logo-illustramente.png" alt="Illustramente" width="160" height="46"> -->
+        <span class="ic-brand-text">Illustramente<small>Concorso 2026/2027</small></span>
+      </a>
+
+      <button class="ic-nav-toggle" type="button" aria-expanded="false" aria-controls="ic-nav"
+        aria-label="Apri il menu"><span></span></button>
+
+      <nav class="ic-nav" id="ic-nav" aria-label="Menu del concorso">
+        <ul class="ic-nav-list">
+          <li class="ic-nav-home"><a href="https://www.illustramente.it/blog/">Torna alla homepage</a></li>
+          <li><a href="index.html" aria-current="page">Il concorso</a></li>
+          <li><a href="bando.html">Il bando 2026/2027</a></li>
+          <li><a href="partner.html">I partner</a></li>
+          <li><a href="giuria.html">Le giurie</a></li>
+          <li class="ic-nav-cta"><a href="iscriviti.html">Iscriviti ora!</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenuto" class="ic-main">
+    <!-- ===== WP: INIZIO CONTENUTO PAGINA =====
+         In WordPress si copia SOLO quello che sta tra INIZIO e FINE
+         (lo strumento wordpress/prepara-contenuti.html lo fa in automatico). -->
+
+    <!-- ============ HERO ============ -->
+    <section class="ic-hero" aria-labelledby="titolo-hero">
+      <div class="ic-container ic-hero-grid">
+        <div>
+          <span class="ic-eyebrow">Concorso 2026/2027 · Terza edizione</span>
+          <h1 id="titolo-hero">“A come amicizia.<br>
+            <em>Portatrice di buone nuove”</em>
+          </h1>
+          <p class="ic-lead">Dedicato ai linguaggi espressivi dell’illustrazione e della poesia</p>
+          <div class="ic-hero-actions">
+            <a class="ic-btn ic-btn-primary" href="iscriviti.html">Iscriviti ora</a>
+            <a class="ic-btn ic-btn-outline" href="bando.html">Leggi il bando</a>
+          </div>
+        </div>
+        <div class="ic-hero-visual">
+          <!-- Grafica provvisoria: quando arriva la locandina 2026/2027 sostituisci src, alt, width e height.
+               (La locandina del 2026, "Il viaggio", resta in assets/img/locandina-concorso-2026.png) -->
+          <img src="assets/img/locandina-provvisoria-2026-2027.svg" width="1200" height="900"
+            alt="Grafica provvisoria del concorso Illustramente 2026/2027: “A come amicizia. Portatrice di buone nuove”">
+        </div>
+      </div>
+      <svg class="ic-hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,95 1440,35 L1440,90 L0,90 Z" fill="#ffffff" />
+      </svg>
+    </section>
+
+    <!-- ============ PRESENTAZIONE DEL PROGETTO ============ -->
+    <section class="ic-section" id="progetto" aria-labelledby="t-progetto">
+      <div class="ic-container">
+        <!-- ===== Intestazione ufficiale del bando ===== -->
+        <div class="ic-bando-head">
+          <h2 class="ic-bando-head-title" id="t-progetto">CONCORSO TERZA EDIZIONE</h2>
+
+          <p class="ic-bando-head-org">ILLUSTRAMENTE, LA FONDAZIONE ISTITUTO DI ALTA CULTURA
+            ORESTIADI E NAXOSLEGGE</p>
+          <p class="ic-bando-head-verb">Organizzano il concorso</p>
+
+          <p class="ic-bando-head-theme">“A come amicizia.
+            Portatrice di buone nuove” </p>
+          <blockquote class="ic-bando-head-quote">
+            <p>«Non camminare davanti a me, potrei non seguirti. Non camminarmi davanti, potrei
+              non seguirti.
+              Cammina soltanto accanto a me e sii mio amico.» – <cite>Albert Camus</cite></p>
+          </blockquote>
+          <p class="ic-bando-head-sub">Dedicato ai linguaggi espressivi dell’illustrazione e della poesia</p>
+
+        </div>
+        <div class="ic-presentation">
+          <aside class="ic-toc" aria-label="In questa pagina">
+            <p>In questa sezione</p>
+            <a href="#sez-tema">Il tema</a>
+            <a href="#sez-sezioni">Le sezioni</a>
+            <a href="#sez-chi">A chi si rivolge</a>
+            <a href="#sez-scad">Iscrizione e modalità di invio</a>
+            <a href="#sez-premi">Premi e giuria</a>
+            <a href="#sez-prom">Promotori e contesto</a>
+
+            <!-- ===== Loghi partner (restano fissi insieme all'indice) ===== -->
+            <div class="ic-toc-partners">
+              <p>Partner</p>
+              <ul class="ic-toc-logos">
+                <li><a href="https://www.illustramente.it/blog/" target="_blank" rel="noopener"
+                    aria-label="Illustramente (si apre in una nuova scheda)"><img
+                      src="assets/img/partner-illustramente.webp" alt="Illustramente" width="313" height="151"
+                      loading="lazy"></a></li>
+                <li><a href="https://www.fondazioneorestiadi.it/" target="_blank" rel="noopener"
+                    aria-label="Fondazione Orestiadi (si apre in una nuova scheda)"><img
+                      src="assets/img/partner-orestiadi.webp" alt="Fondazione Orestiadi" width="313" height="151"
+                      loading="lazy"></a></li>
+                <li><a href="https://www.naxoslegge.com/" target="_blank" rel="noopener"
+                    aria-label="NaxosLegge (si apre in una nuova scheda)"><img
+                      src="assets/img/partner-naxoslegge.webp" alt="NaxosLegge" width="313" height="151"
+                      loading="lazy"></a></li>
+                <li><a href="https://www.comune.gibellina.tp.it/" target="_blank" rel="noopener"
+                    aria-label="Comune di Gibellina (si apre in una nuova scheda)"><img
+                      src="assets/img/partner-gibellina.webp" alt="Comune di Gibellina" width="86" height="100"
+                      loading="lazy"></a></li>
+                <li><a href="https://www.comune.palermo.it/" target="_blank" rel="noopener"
+                    aria-label="Comune di Palermo (si apre in una nuova scheda)"><img
+                      src="assets/img/partner-palermo.webp" alt="Comune di Palermo" width="79" height="100"
+                      loading="lazy"></a></li>
+              </ul>
+            </div>
+          </aside>
+
+          <div>
+            <article class="ic-article-block" id="sez-tema">
+              <h3>Il tema</h3>
+              <p>“L'amicizia”</p>
+            </article>
+
+            <article class="ic-article-block" id="sez-sezioni">
+              <h3>Le sezioni di partecipazione</h3>
+              <p>Il concorso si articola in due sezioni:</p>
+              <div class="ic-grid-2">
+                <div class="ic-card">
+                  <div class="ic-icon" aria-hidden="true">I</div>
+                  <h4>Illustrazione</h4>
+                  <p class="ic-card-sub">“A come amicizia”</p>
+                  <p>Premio “Illustrazione del Mediterraneo – Livio Sossi” (3° edizione).</p>
+                  <p>Il concorso invita i partecipanti a esplorare il tema dell'amicizia come legame profondo tra
+                    individui, comunità e popoli del Mediterraneo, simbolo di unione tra culture, solidarietà, rispetto
+                    reciproco e dialogo interculturale. Attraverso le diverse sfaccettature dell'amicizia, i
+                    partecipanti
+                    sono chiamati a rappresentare l'incontro con l'altro, l'abbattimento dei muri e la costruzione di un
+                    immaginario condiviso. Le illustrazioni dovranno interpretare graficamente i colori, i paesaggi, la
+                    biodiversità e il patrimonio umano e culturale del Mediterraneo, raccontando la bellezza della
+                    vicinanza e della diversità. Le opere selezionate saranno protagoniste di una prestigiosa mostra
+                    itinerante in diverse città italiane.</p>
+                </div>
+                <div class="ic-card">
+                  <div class="ic-icon" aria-hidden="true">P</div>
+                  <h4>Poesia</h4>
+                  <p class="ic-card-sub">“L’Amicizia”</p>
+                  <p>Premio “Mediterraneo poesia giovani – Ludovico Corrao” (2ª edizione).</p>
+                  <p>Il premio invita i partecipanti a realizzare componimenti poetici inediti sul tema dell'amicizia,
+                    intesa come legame affettivo, occasione di crescita interpersonale e valore collettivo di pace. I
+                    versi dovranno catturare lo spirito, la delicatezza e la forza dell'amicizia, sia come sentimento
+                    tra
+                    singoli individui sia come abbraccio solidale tra culture e popoli. Dedicato a Ludovico Corrao, il
+                    premio celebra il valore dell'arte e della poesia come strumenti di unione tra le persone,
+                    ricostruzione di un'identità e costruzione di un futuro di pace, nel segno delle identità plurali
+                    dei
+                    popoli del Mediterraneo.</p>
+                </div>
+              </div>
+            </article>
+
+
+            <article class="ic-article-block" id="sez-chi">
+              <h3>A chi si rivolge</h3>
+              <p><b>Scuole</b>: studentesse e studenti delle scuole secondarie di primo e secondo
+                grado. <br>
+                <b>Non professionisti</b>: illustratrici/illustratori e autrici/autori esordienti o non
+                professionisti che desiderano misurarsi con la creazione di poesie e con
+                l’illustrazione per l’infanzia.
+              </p>
+              <p>La partecipazione al concorso è gratuita per le scuole ed è aperta ad artisti e
+                artiste non professionisti/ste di qualsiasi nazionalità, residenza e senza limiti di età. <br>
+                Per i partecipanti minorenni è richiesta l’autorizzazione scritta di chi ne esercita la
+                responsabilità genitoriale. <br>
+              </p>
+            </article>
+            <article class="ic-article-block" id="sez-scad">
+              <h3>Iscrizioni e modalità di invio</h3>
+              <p>L'iscrizione deve essere effettuata compilando i <a href="iscriviti.html">moduli
+                  online</a> dedicati entro
+                i termini stabiliti dal comitato organizzativo. <br>
+                Gli elaborati (illustrazioni e poesie) dovranno essere caricati tramite la
+                piattaforma online seguendo le istruzioni tecniche di upload riportate sui canali
+                ufficiali.
+              </p>
+              <p>Si invita a leggere con attenzione il <a href="bando.html">bando</a> integrale prima
+                di iscriversi: materiali incompleti o non
+                conformi comportano l’esclusione senza rimborso della quota.</p>
+            </article>
+
+            <article class="ic-article-block" id="sez-premi">
+              <h3>Premi e giuria</h3>
+              <p>Il Premio “ <b>Illustrazione del Mediterraneo</b>” è dedicato alla memoria del
+                <b>Professore Livio Sossi</b> (Trieste, 1951-2019), tra i massimi esperti di illustrazione e
+                letteratura per ragazzi e ragazze, docente universitario, saggista, promotore del libro e
+                della cultura per l’infanzia. <br> Membro del comitato organizzativo di Illustramente dal
+                2013, il professore Sossi è stato un mentore, un amico e un costruttore di ponti. <br>
+
+                Obiettivo del Premio a lui dedicato è promuovere la letteratura e l’illustrazione per
+                l’infanzia attraverso le opere di artiste/artisti di talento.
+              </p>
+              <p>Il Premio Mediterraneo Poesia Giovani “ <b>Ludovico Corrao</b>” è istituito per
+                onorare la memoria e l’eredità visionaria del fondatore delle Orestiadi, che fece della
+                bellezza, dell'amicizia e del dialogo tra i popoli il cuore pulsante della ricostruzione
+                di Gibellina, trasformando l'arte in uno strumento di riscatto civile e pace. <br>
+
+                Obiettivo
+                del Premio è promuovere la poesia come strumento di dialogo artistico dei giovani
+                del Mediterraneo.</p>
+              <p>Le opere saranno valutate da una <a href="giuria.html">giuria</a> di esperti del
+                settore (editori,
+                illustratori, poeti, docenti). <br> I vincitori delle categorie si aggiudicheranno la
+                partecipazione alle mostre, la pubblicazione sul catalogo ufficiale e, per il vincitore
+                assoluto, la stipula di un regolare contratto di edizione per la pubblicazione di un albo
+                illustrato dedicato.</p>
+            </article>
+
+            <article class="ic-article-block" id="sez-prom">
+              <h3>Promotori e contesto</h3>
+              <p>Il concorso sarà promosso su tutto il territorio nazionale. <br>
+                Nell’arco dell’anno sono previsti momenti di diffusione con il supporto dei co-organizzatori e dei
+                partner nei Comuni di <b>Palermo</b>, <b>Gibellina</b> e <b>Giardini-Naxos</b>.
+                La rete delle <b>Biblioteche comunali</b> sul territorio regionale ospiterà le scuole che
+                parteciperanno.</p>
+              <p>I programmi e gli aggiornamenti saranno pubblicati sui siti ufficiali di <b>Illustramente</b>, della
+                <b>Fondazione Istituto di Alta Cultura
+                  Orestiadi</b>, di <b>NaxosLegge</b>, oltre che sulle rispettive pagine social.
+              </p>
+              <p>Il concorso è realizzato nel contesto delle attività culturali promuovendo la letteratura
+                per l&#39;infanzia, l&#39;arte contemporanea e il dialogo tra i popoli.</p>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BANDO: leggi / scarica ============ -->
+    <section class="ic-section ic-section-alt" id="bando" aria-labelledby="t-bando">
+      <div class="ic-container">
+        <div class="ic-bando-box">
+          <div>
+            <span class="ic-eyebrow ic-eyebrow-light">Bando 2026/2027</span>
+            <h2 id="t-bando">Leggi il bando di concorso</h2>
+            <p>Tutte le regole, i requisiti e le scadenze sono nel bando ufficiale. Leggilo online oppure
+              scaricalo in PDF.</p>
+          </div>
+          <div class="ic-bando-actions">
+            <a class="ic-btn ic-btn-primary" href="bando.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z" />
+                <path d="M8 7h6M8 11h6" />
+              </svg>
+              Leggi il bando
+            </a>
+            <a class="ic-btn ic-btn-light" href="download/bando-terza-edizione.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
+              </svg>
+              Scarica il bando (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORM INFORMAZIONI ============ -->
+    <section class="ic-section" id="contatti" aria-labelledby="t-contatti">
+      <div class="ic-container ic-contact">
+        <div class="ic-contact-info">
+          <span class="ic-eyebrow">Contatti</span>
+          <h2 id="t-contatti">Hai bisogno di informazioni?</h2>
+          <p>Per ogni informazione aggiuntiva puoi contattarci via <a href="mailto:info@illustramente.it">e-mail</a> o anche via <a href="https://wa.me/393477561652" target="_blank" rel="noopener">WhatsApp</a></p>
+          <p><strong>Segreteria organizzativa</strong><br>Coloré Cooperativa Sociale<br>Cantieri Culturali alla Zisa –
+            Via Paolo Gili, 4 – Palermo</p>
+        </div>
+
+        <!-- In WordPress questo <form> si sostituisce con lo shortcode del plugin dei moduli (vedi la guida GUIDA-WORDPRESS.html, file a parte) -->
+        <form class="ic-form" id="form-info" action="#" method="post" novalidate>
+          <div class="ic-form-row">
+            <div class="ic-field">
+              <label for="nome">Nome e cognome *</label>
+              <input type="text" id="nome" name="nome" autocomplete="name" required>
+            </div>
+            <div class="ic-field">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="ic-field">
+            <label for="argomento">Argomento della richiesta</label>
+            <select id="argomento" name="argomento">
+              <option value="generale">Informazioni generali</option>
+              <option value="illustrazione">Sezione Illustrazione</option>
+              <option value="poesia">Sezione Poesia</option>
+              <option value="iscrizione">Problemi con l’iscrizione</option>
+            </select>
+          </div>
+          <div class="ic-field">
+            <label for="messaggio">Messaggio *</label>
+            <textarea id="messaggio" name="messaggio" required></textarea>
+          </div>
+          <div class="ic-field ic-hp" aria-hidden="true">
+            <label for="sito">Non compilare</label>
+            <input type="text" id="sito" name="sito" tabindex="-1" autocomplete="off">
+          </div>
+          <label class="ic-check">
+            <input type="checkbox" id="privacy" name="privacy" required>
+            <span>Ho letto l’<a href="https://www.iubenda.com/privacy-policy/48086239" target="_blank" rel="noopener">informativa sulla
+                privacy</a> e acconsento al trattamento dei dati. *</span>
+          </label>
+          <button class="ic-btn ic-btn-teal" type="submit">Invia la richiesta</button>
+          <p class="ic-form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== WP: FINE CONTENUTO PAGINA ===== -->
+  </main>
+
+  <!-- ============ FOOTER (come illustramente.it) ============
+       In WordPress: concorso/parts/footer.php -->
+  <footer class="ic-footer">
+    <div class="ic-footer-top">
+      <div class="ic-container ic-footer-cols">
+
+        <div class="ic-footer-col">
+          <h2>Segreteria organizzativa di Illustramente</h2>
+          <a href="http://www.centroculturaleskene.it/" target="_blank" rel="noopener"
+            aria-label="Centro Culturale Skené (si apre in una nuova scheda)">
+            <img src="assets/img/logo-skene.webp" alt="Skené" width="78" height="48">
+          </a>
+        </div>
+
+        <div class="ic-footer-col">
+          <h2>Iscriviti al canale</h2>
+          <a href="https://www.youtube.com/user/Illustramente" target="_blank" rel="noopener"
+            aria-label="Canale YouTube di Illustramente (si apre in una nuova scheda)">
+            <img src="assets/img/logo-youtube.webp" alt="YouTube" width="143" height="44">
+          </a>
+        </div>
+
+        <div class="ic-footer-col ic-footer-policy">
+          <a class="ic-pill ic-pill-dark" href="https://www.iubenda.com/privacy-policy/48086239" target="_blank"
+            rel="noopener">Privacy Policy</a>
+          <a class="ic-pill ic-pill-light" href="https://www.iubenda.com/privacy-policy/48086239/cookie-policy"
+            target="_blank" rel="noopener">Cookie Policy</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="ic-footer-bottom-bar">
+      <div class="ic-container ic-footer-bottom-inner">
+        <p>
+          Direttore artistico: Rosanna Maranto<br>
+          Copyright © 2026 Illustramente | Tutti i diritti riservati<br>
+          Coloré Cooperativa Sociale | C/O Cantieri Culturali alla Zisa - Via Paolo Gili, 4 - Palermo<br>
+          P. IVA 05899650823<br>
+          Foto: <a href="https://www.fotographpalermo.it/" target="_blank" rel="noopener">Fotograph Palermo</a>
+        </p>
+
+        <div class="ic-footer-social">
+          <a href="https://www.facebook.com/Illustramente/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M14 8V6.5c0-.8.2-1.2 1.3-1.2H17V2.2C16.6 2.15 15.6 2 14.5 2 12 2 10.3 3.5 10.3 6.3V8H7.5v3.5h2.8V22H14V11.5h2.8L17.3 8H14z" />
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/user/Illustramente" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/illustramente.it/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="t d">
+  <title id="t">Concorso Illustramente 2026/2027 – A come amicizia</title>
+  <desc id="d">Grafica provvisoria in attesa della locandina ufficiale.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eaf1fb"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#sky)"/>
+  <circle cx="90" cy="120" r="150" fill="#fff4c9"/>
+  <circle cx="1130" cy="90" r="110" fill="#d8efec"/>
+  <circle cx="1180" cy="560" r="170" fill="#fbdcdc"/>
+
+  <g font-family="'Roboto Condensed','Arial Narrow',Arial,sans-serif" text-anchor="middle">
+    <text x="600" y="118" font-size="30" font-weight="700" fill="#2d4373" letter-spacing="3"
+      textLength="760" lengthAdjust="spacingAndGlyphs">ILLUSTRAMENTE · FONDAZIONE ORESTIADI · NAXOSLEGGE</text>
+    <line x1="420" y1="150" x2="780" y2="150" stroke="#2d4373" stroke-width="2" opacity=".35"/>
+
+    <!-- Due cerchi intrecciati: l'amicizia -->
+    <circle cx="572" cy="222" r="38" fill="none" stroke="#22748f" stroke-width="9"/>
+    <circle cx="628" cy="222" r="38" fill="none" stroke="#c84b00" stroke-width="9"/>
+
+    <text x="600" y="390" font-size="128" font-weight="700" fill="#2d4373"
+      textLength="900" lengthAdjust="spacingAndGlyphs">“A come amicizia.</text>
+    <text x="600" y="490" font-size="88" font-weight="700" fill="#3f74bd"
+      textLength="820" lengthAdjust="spacingAndGlyphs">Portatrice di buone nuove”</text>
+    <text x="600" y="556" font-size="30" fill="#5d6675" letter-spacing="2"
+      textLength="430" lengthAdjust="spacingAndGlyphs">ILLUSTRAZIONE · POESIA</text>
+  </g>
+
+  <!-- Mare -->
+  <path d="M0,660 C200,610 400,700 600,660 C800,620 1000,700 1200,650 L1200,900 L0,900 Z" fill="#c9daf1"/>
+  <path d="M0,720 C220,680 420,760 640,720 C860,680 1020,750 1200,715 L1200,900 L0,900 Z" fill="#8fb1de"/>
+  <path d="M0,790 C240,750 440,830 660,790 C880,750 1040,820 1200,785 L1200,900 L0,900 Z" fill="#3f74bd"/>
+
+  <g font-family="'Roboto Condensed','Arial Narrow',Arial,sans-serif" text-anchor="middle" font-weight="700">
+    <circle cx="1030" cy="740" r="112" fill="#c84b00"/>
+    <text x="1030" y="728" font-size="40" fill="#ffffff" textLength="170" lengthAdjust="spacingAndGlyphs">CONCORSO</text>
+    <text x="1030" y="778" font-size="40" fill="#ffffff" textLength="170" lengthAdjust="spacingAndGlyphs">2026/2027</text>
+  </g>
+
+  <text x="40" y="870" font-family="Arial,sans-serif" font-size="20" fill="#ffffff" opacity=".85">Grafica provvisoria</text>
+</svg>

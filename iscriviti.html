@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iscriviti – Concorso Illustramente 2026/2027</title>
+  <meta name="description" content="Iscriviti al concorso Illustramente 2026/2027: inserisci i tuoi dati e carica la tua illustrazione o la tua poesia sul tema dell’amicizia.">
+  <!-- In WordPress font, CSS e JS li carica concorso/functions-concorso.php: queste righe non vanno copiate -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Condensed:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+
+<body class="ic">
+  <a class="ic-skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <!-- ============ HEADER + MENU ============
+       In WordPress: concorso/parts/header.php. Il menu è una lista <ul><li><a>
+       come quella generata da WordPress (Aspetto → Menu). -->
+  <header class="ic-header">
+    <div class="ic-container ic-header-inner">
+      <a class="ic-brand" href="index.html">
+        <!-- Per usare il logo: <img src="assets/img/logo-illustramente.png" alt="Illustramente" width="160" height="46"> -->
+        <span class="ic-brand-text">Illustramente<small>Concorso 2026/2027</small></span>
+      </a>
+
+      <button class="ic-nav-toggle" type="button" aria-expanded="false" aria-controls="ic-nav"
+        aria-label="Apri il menu"><span></span></button>
+
+      <nav class="ic-nav" id="ic-nav" aria-label="Menu del concorso">
+        <ul class="ic-nav-list">
+          <li class="ic-nav-home"><a href="https://www.illustramente.it/blog/">Torna alla homepage</a></li>
+          <li><a href="index.html">Il concorso</a></li>
+          <li><a href="bando.html">Il bando 2026/2027</a></li>
+          <li><a href="partner.html">I partner</a></li>
+          <li><a href="giuria.html">Le giurie</a></li>
+          <li class="ic-nav-cta"><a href="iscriviti.html" aria-current="page">Iscriviti ora!</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenuto" class="ic-main">
+    <!-- ===== WP: INIZIO CONTENUTO PAGINA =====
+         In WordPress si copia SOLO quello che sta tra INIZIO e FINE
+         (lo strumento wordpress/prepara-contenuti.html lo fa in automatico). -->
+
+    <section class="ic-page-hero">
+      <div class="ic-container">
+        <p class="ic-breadcrumb"><a href="index.html">Concorso 2026/2027</a> › Iscriviti</p>
+        <h1>Iscriviti al concorso</h1>
+        <p class="ic-lead">Compila il modulo con i dati del partecipante e carica le opere. La data di chiusura delle
+          iscrizioni sarà comunicata dal comitato organizzativo.</p>
+      </div>
+    </section>
+
+    <section class="ic-section">
+      <div class="ic-container">
+        <div class="ic-section-head">
+          <span class="ic-eyebrow">Come funziona</span>
+          <h2>Iscriversi in tre passi</h2>
+        </div>
+        <div class="ic-grid-3">
+          <div class="ic-card">
+            <div class="ic-icon" aria-hidden="true">1</div>
+            <h3>Leggi il bando</h3>
+            <p>Controlla requisiti e categorie: illustrazione in formato A3 verticale a 300 DPI, poesia in PDF da 200 a
+              400 parole.</p>
+          </div>
+          <div class="ic-card">
+            <div class="ic-icon" aria-hidden="true">2</div>
+            <h3>Prepara i file</h3>
+            <p>L’opera e, se servono, la ricevuta del bonifico (esordienti) e l’autorizzazione firmata da un genitore
+              (minorenni).</p>
+          </div>
+          <div class="ic-card">
+            <div class="ic-icon" aria-hidden="true">3</div>
+            <h3>Compila il modulo</h3>
+            <p>Un modulo per ogni partecipante: le scuole ne compilano uno per ciascuno studente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MODULO DI ISCRIZIONE E UPLOAD ============
+         Prototipo: controlla i dati ma non li invia. In WordPress va ricreato con il plugin
+         dei moduli (Quform, già installato sul sito) seguendo questi stessi campi e queste regole:
+         vedi la guida GUIDA-WORDPRESS.html (file a parte) → "I moduli". -->
+    <section class="ic-section ic-section-alt" id="modulo" aria-labelledby="t-modulo">
+      <div class="ic-container ic-layout-aside">
+
+        <div>
+          <h2 id="t-modulo">Modulo di iscrizione</h2>
+          <form class="ic-reg-form" id="ic-form-iscrizione" action="#" method="post" enctype="multipart/form-data"
+            novalidate>
+
+            <!-- Avviso solo per la bozza: sta dentro il modulo, così sparisce quando il modulo
+                 viene sostituito dallo shortcode di Quform -->
+            <div class="ic-alert">
+              <p><strong>Versione dimostrativa.</strong> Il modulo esegue tutti i controlli ma non invia dati: l’invio
+                verrà attivato sul sito WordPress.</p>
+            </div>
+
+            <div class="ic-error-summary" id="ic-reg-errors" tabindex="-1" hidden></div>
+
+            <!-- ===== 1. Chi si iscrive ===== -->
+            <section class="ic-step" aria-labelledby="t-step-1">
+              <h3 class="ic-step-title" id="t-step-1"><span class="ic-step-num" aria-hidden="true">1</span>Chi si
+                iscrive</h3>
+
+              <fieldset class="ic-group">
+                <legend>Partecipo come *</legend>
+                <div class="ic-choices">
+                  <label class="ic-choice">
+                    <input type="radio" name="tipo" id="tipo-scuola" value="scuola" required>
+                    <span>
+                      <span class="ic-choice-title">Scuola</span>
+                      <span class="ic-choice-desc">Studentessa o studente di una scuola secondaria di primo o secondo
+                        grado. Partecipazione gratuita.</span>
+                    </span>
+                  </label>
+                  <label class="ic-choice">
+                    <input type="radio" name="tipo" id="tipo-esordiente" value="esordiente">
+                    <span>
+                      <span class="ic-choice-title">Esordiente / non professionista</span>
+                      <span class="ic-choice-desc">Chi non ha mai pubblicato opere edite. Contributo di partecipazione
+                        di € 15,00.</span>
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="ic-sub" data-ic-show="scuola" hidden>
+                <h4 class="ic-sub-title">Dati della scuola</h4>
+                <p class="ic-hint">A ogni lavoro deve corrispondere un singolo allievo o allieva (Art. 6): compila un
+                  modulo per ogni studente.</p>
+                <div class="ic-form-row">
+                  <div class="ic-field">
+                    <label for="scuola_nome">Nome dell’istituto *</label>
+                    <input type="text" id="scuola_nome" name="scuola_nome" autocomplete="organization" required>
+                  </div>
+                  <div class="ic-field">
+                    <label for="scuola_citta">Città dell’istituto *</label>
+                    <input type="text" id="scuola_citta" name="scuola_citta" required>
+                  </div>
+                </div>
+                <div class="ic-form-row">
+                  <div class="ic-field">
+                    <label for="scuola_grado">Grado *</label>
+                    <select id="scuola_grado" name="scuola_grado" required>
+                      <option value="">Scegli…</option>
+                      <option value="primo-grado">Secondaria di primo grado</option>
+                      <option value="secondo-grado">Secondaria di secondo grado</option>
+                    </select>
+                  </div>
+                  <div class="ic-field">
+                    <label for="scuola_classe">Classe e sezione *</label>
+                    <input type="text" id="scuola_classe" name="scuola_classe" placeholder="es. 3ª B" required>
+                  </div>
+                </div>
+                <div class="ic-form-row">
+                  <div class="ic-field">
+                    <label for="docente_nome">Docente referente (nome e cognome) *</label>
+                    <input type="text" id="docente_nome" name="docente_nome" required>
+                  </div>
+                  <div class="ic-field">
+                    <label for="docente_email">E-mail del docente *</label>
+                    <input type="email" id="docente_email" name="docente_email" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ic-sub" data-ic-show="esordiente" hidden>
+                <h4 class="ic-sub-title">Requisito per gli esordienti</h4>
+                <label class="ic-check">
+                  <input type="checkbox" id="dich_non_professionista" name="dich_non_professionista" required>
+                  <span>Dichiaro di non aver mai pubblicato opere edite alla data di scadenza del bando (Art. 6). *</span>
+                </label>
+              </div>
+            </section>
+
+            <!-- ===== 2. Dati del partecipante ===== -->
+            <section class="ic-step" aria-labelledby="t-step-2">
+              <h3 class="ic-step-title" id="t-step-2"><span class="ic-step-num" aria-hidden="true">2</span>Dati del
+                partecipante</h3>
+              <p class="ic-step-intro">Per le scuole: i dati della studentessa o dello studente.</p>
+
+              <div class="ic-form-row">
+                <div class="ic-field">
+                  <label for="nome">Nome *</label>
+                  <input type="text" id="nome" name="nome" autocomplete="given-name" required>
+                </div>
+                <div class="ic-field">
+                  <label for="cognome">Cognome *</label>
+                  <input type="text" id="cognome" name="cognome" autocomplete="family-name" required>
+                </div>
+              </div>
+              <div class="ic-form-row">
+                <div class="ic-field">
+                  <label for="data_nascita">Data di nascita *</label>
+                  <input type="date" id="data_nascita" name="data_nascita" autocomplete="bday" min="1900-01-01"
+                    data-range-msg="Inserisci una data di nascita valida." required>
+                </div>
+                <div class="ic-field">
+                  <label for="luogo_nascita">Luogo di nascita *</label>
+                  <input type="text" id="luogo_nascita" name="luogo_nascita" required>
+                </div>
+              </div>
+              <div class="ic-field">
+                <label for="indirizzo">Indirizzo di residenza (via e numero civico) *</label>
+                <input type="text" id="indirizzo" name="indirizzo" autocomplete="address-line1" required>
+              </div>
+              <div class="ic-form-row ic-form-row-3">
+                <div class="ic-field">
+                  <label for="citta">Città *</label>
+                  <input type="text" id="citta" name="citta" autocomplete="address-level2" required>
+                </div>
+                <div class="ic-field">
+                  <label for="cap">CAP *</label>
+                  <input type="text" id="cap" name="cap" autocomplete="postal-code" inputmode="numeric"
+                    maxlength="10" required>
+                </div>
+                <div class="ic-field">
+                  <label for="provincia">Provincia</label>
+                  <input type="text" id="provincia" name="provincia" autocomplete="address-level1" maxlength="30"
+                    placeholder="es. PA">
+                </div>
+              </div>
+              <div class="ic-form-row">
+                <div class="ic-field">
+                  <label for="stato">Stato di residenza *</label>
+                  <input type="text" id="stato" name="stato" autocomplete="country-name" value="Italia" required>
+                </div>
+                <div class="ic-field">
+                  <label for="nazionalita">Nazionalità *</label>
+                  <input type="text" id="nazionalita" name="nazionalita" required>
+                </div>
+              </div>
+              <div class="ic-form-row">
+                <div class="ic-field">
+                  <label for="email">E-mail *</label>
+                  <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+                <div class="ic-field">
+                  <label for="telefono">Telefono *</label>
+                  <input type="tel" id="telefono" name="telefono" autocomplete="tel" pattern="[0-9 +.\-\/\(\)]{6,20}"
+                    data-pattern-msg="Inserisci un numero di telefono valido (solo cifre, spazi e +)." required>
+                </div>
+              </div>
+
+              <div class="ic-sub" data-ic-show="minorenne" hidden>
+                <h4 class="ic-sub-title">Partecipante minorenne</h4>
+                <p class="ic-hint">Per i minorenni serve l’autorizzazione scritta di chi esercita la responsabilità
+                  genitoriale (Art. 5).</p>
+                <div class="ic-form-row">
+                  <div class="ic-field">
+                    <label for="tutore_nome">Nome e cognome del genitore o tutore *</label>
+                    <input type="text" id="tutore_nome" name="tutore_nome" required>
+                  </div>
+                  <div class="ic-field">
+                    <label for="tutore_email">E-mail del genitore o tutore *</label>
+                    <input type="email" id="tutore_email" name="tutore_email" required>
+                  </div>
+                </div>
+                <div class="ic-field ic-file">
+                  <label for="file_autorizzazione">Autorizzazione firmata *</label>
+                  <span class="ic-hint" id="hint-autorizzazione">PDF, JPG o PNG · massimo 5 MB</span>
+                  <input type="file" id="file_autorizzazione" name="file_autorizzazione" accept=".pdf,.jpg,.jpeg,.png"
+                    data-max-mb="5" aria-describedby="hint-autorizzazione" required>
+                </div>
+              </div>
+            </section>
+
+            <!-- ===== 3. Categoria ===== -->
+            <section class="ic-step" aria-labelledby="t-step-3">
+              <h3 class="ic-step-title" id="t-step-3"><span class="ic-step-num" aria-hidden="true">3</span>Categoria
+              </h3>
+
+              <fieldset class="ic-group">
+                <legend>Sezione Illustrazione *</legend>
+                <div class="ic-choices ic-choices-list">
+                  <label class="ic-choice">
+                    <input type="radio" name="cat_illustrazione" id="cat-a" value="A" required>
+                    <span>
+                      <span class="ic-choice-title">Categoria A</span>
+                      <span class="ic-choice-desc">Tecniche tradizionali, digitali o miste.</span>
+                    </span>
+                  </label>
+                  <label class="ic-choice">
+                    <input type="radio" name="cat_illustrazione" id="cat-b" value="B">
+                    <span>
+                      <span class="ic-choice-title">Categoria B</span>
+                      <span class="ic-choice-desc">Con l’ausilio dell’intelligenza artificiale.</span>
+                    </span>
+                  </label>
+                  <label class="ic-choice">
+                    <input type="radio" name="cat_illustrazione" id="cat-nessuna" value="nessuna">
+                    <span>
+                      <span class="ic-choice-title">Non partecipo</span>
+                      <span class="ic-choice-desc">Partecipo solo alla poesia.</span>
+                    </span>
+                  </label>
+                </div>
+                <span class="ic-hint">Si può partecipare a una sola categoria di illustrazione: A oppure B (Art.
+                  7).</span>
+              </fieldset>
+
+              <fieldset class="ic-group">
+                <legend>Sezione Poesia</legend>
+                <div class="ic-choices ic-choices-list">
+                  <label class="ic-choice">
+                    <input type="checkbox" name="cat_poesia" id="cat-c" value="C">
+                    <span>
+                      <span class="ic-choice-title">Categoria C – Poesia</span>
+                      <span class="ic-choice-desc">Senza l’ausilio dell’intelligenza artificiale.</span>
+                    </span>
+                  </label>
+                </div>
+                <span class="ic-hint">Chi partecipa alla poesia può iscriversi anche a una categoria di illustrazione
+                  (doppia iscrizione, Art. 7).</span>
+              </fieldset>
+            </section>
+
+            <!-- ===== 4. Le opere ===== -->
+            <section class="ic-step" aria-labelledby="t-step-4">
+              <h3 class="ic-step-title" id="t-step-4"><span class="ic-step-num" aria-hidden="true">4</span>Le opere
+              </h3>
+
+              <p class="ic-step-intro" data-ic-show="nessuna-categoria">Scegli una categoria al passo 3: qui
+                compariranno i campi per caricare le opere.</p>
+
+              <div class="ic-sub" data-ic-show="illustrazione" hidden>
+                <h4 class="ic-sub-title">Illustrazione</h4>
+                <div class="ic-form-row">
+                  <div class="ic-field">
+                    <label for="ill_titolo">Titolo dell’opera *</label>
+                    <input type="text" id="ill_titolo" name="ill_titolo" required>
+                  </div>
+                  <div class="ic-field">
+                    <label for="ill_tecnica">Tecnica utilizzata *</label>
+                    <input type="text" id="ill_tecnica" name="ill_tecnica" placeholder="es. acquerello, digitale…"
+                      required>
+                  </div>
+                </div>
+
+                <div data-ic-show="cat-b" hidden>
+                  <div class="ic-field">
+                    <label for="ill_ia_piattaforma">Piattaforma o piattaforme di IA utilizzate *</label>
+                    <input type="text" id="ill_ia_piattaforma" name="ill_ia_piattaforma" required>
+                  </div>
+                  <div class="ic-field">
+                    <label for="ill_ia_crediti">Crediti richiesti dalla piattaforma</label>
+                    <textarea id="ill_ia_crediti" name="ill_ia_crediti" rows="3"
+                      aria-describedby="hint-crediti"></textarea>
+                    <span class="ic-hint" id="hint-crediti">Se la piattaforma richiede di citarla, riporta qui il
+                      testo esatto (Art. 3/b).</span>
+                  </div>
+                </div>
+
+                <div class="ic-field ic-file">
+                  <label for="file_illustrazione">File dell’illustrazione *</label>
+                  <span class="ic-hint" id="hint-illustrazione">A3 verticale a 300 DPI (3508 × 4961 px), profilo
+                    colore RGB · JPG, PNG, TIFF o PDF · massimo 20 MB. Per le opere su carta carica la scansione a 300
+                    DPI.</span>
+                  <input type="file" id="file_illustrazione" name="file_illustrazione"
+                    accept=".jpg,.jpeg,.png,.tif,.tiff,.pdf" data-max-mb="20" data-a3
+                    aria-describedby="hint-illustrazione" required>
+                </div>
+
+                <label class="ic-check" data-ic-show="cat-a" hidden>
+                  <input type="checkbox" id="dich_no_ia_illustrazione" name="dich_no_ia_illustrazione" required>
+                  <span>Dichiaro che l’illustrazione è stata realizzata senza l’ausilio dell’intelligenza artificiale
+                    (Art. 12). *</span>
+                </label>
+              </div>
+
+              <div class="ic-sub" data-ic-show="poesia" hidden>
+                <h4 class="ic-sub-title">Poesia</h4>
+                <div class="ic-field">
+                  <label for="poesia_titolo">Titolo della poesia *</label>
+                  <input type="text" id="poesia_titolo" name="poesia_titolo" required>
+                </div>
+                <div class="ic-field ic-file">
+                  <label for="file_poesia">File della poesia *</label>
+                  <span class="ic-hint" id="hint-poesia">Solo PDF · massimo 5 MB</span>
+                  <input type="file" id="file_poesia" name="file_poesia" accept=".pdf" data-max-mb="5"
+                    aria-describedby="hint-poesia" required>
+                </div>
+                <div class="ic-field">
+                  <label for="poesia_testo">Testo della poesia, senza titolo *</label>
+                  <span class="ic-hint" id="hint-testo">Incollalo qui: serve a verificare che sia tra 200 e 400 parole,
+                    esclusi i segni di interpunzione e il titolo (Art. 4/a).</span>
+                  <textarea id="poesia_testo" name="poesia_testo" rows="8" data-min-words="200"
+                    data-max-words="400" data-counter="poesia-counter" aria-describedby="hint-testo poesia-counter"
+                    required></textarea>
+                  <span class="ic-counter" id="poesia-counter" aria-live="polite"></span>
+                </div>
+                <label class="ic-check">
+                  <input type="checkbox" id="dich_no_ia_poesia" name="dich_no_ia_poesia" required>
+                  <span>Dichiaro che la poesia è inedita ed è stata scritta senza l’ausilio dell’intelligenza
+                    artificiale (Art. 12). *</span>
+                </label>
+              </div>
+            </section>
+
+            <!-- ===== 5. Quota di partecipazione ===== -->
+            <section class="ic-step" aria-labelledby="t-step-5">
+              <h3 class="ic-step-title" id="t-step-5"><span class="ic-step-num" aria-hidden="true">5</span>Quota di
+                partecipazione</h3>
+
+              <p class="ic-step-intro" data-ic-show="tipo-mancante">Scegli al passo 1 se ti iscrivi come scuola o come
+                esordiente.</p>
+              <p data-ic-show="scuola" hidden>Per le scuole la partecipazione è <strong>gratuita</strong>: non serve
+                nessun pagamento.</p>
+
+              <div data-ic-show="esordiente" hidden>
+                <p>Per gli esordienti è previsto un contributo di <strong>€ 15,00</strong> tramite bonifico bancario.
+                  L’iscrizione sarà confermata a seguito del versamento (Art. 8).</p>
+                <!-- Da chiarire con l'organizzazione: con la doppia iscrizione (illustrazione + poesia) la quota raddoppia? -->
+                <div class="ic-pay">
+                  <div class="ic-pay-row"><span>Banca</span><strong>Banca Etica</strong></div>
+                  <div class="ic-pay-row"><span>IBAN</span><code>IT68T0501804600000017282484</code>
+                    <button type="button" class="ic-btn ic-btn-outline ic-btn-small"
+                      data-ic-copy="IT68T0501804600000017282484">Copia IBAN</button>
+                  </div>
+                  <div class="ic-pay-row"><span>Causale</span>Concorso Illustramente 2026/2027 – nome e cognome –
+                    categoria</div>
+                </div>
+                <div class="ic-field ic-file">
+                  <label for="file_ricevuta">Ricevuta del bonifico *</label>
+                  <span class="ic-hint" id="hint-ricevuta">PDF, JPG o PNG · massimo 5 MB</span>
+                  <input type="file" id="file_ricevuta" name="file_ricevuta" accept=".pdf,.jpg,.jpeg,.png"
+                    data-max-mb="5" aria-describedby="hint-ricevuta" required>
+                </div>
+              </div>
+            </section>
+
+            <!-- ===== 6. Dichiarazioni e consensi ===== -->
+            <section class="ic-step" aria-labelledby="t-step-6">
+              <h3 class="ic-step-title" id="t-step-6"><span class="ic-step-num" aria-hidden="true">6</span>Dichiarazioni
+                e consensi</h3>
+
+              <label class="ic-check">
+                <input type="checkbox" id="accetto_bando" name="accetto_bando" required>
+                <span>Ho letto il <a href="bando.html" target="_blank" rel="noopener">bando di concorso<span
+                      class="ic-sr-only"> (si apre in una nuova scheda)</span></a> e ne accetto integralmente il
+                  regolamento. *</span>
+              </label>
+              <label class="ic-check">
+                <input type="checkbox" id="dich_originalita" name="dich_originalita" required>
+                <span>Garantisco la titolarità e l’originalità delle opere inviate, che non sono mai state pubblicate
+                  (Art. 12). *</span>
+              </label>
+              <!-- Consenso suggerito (non scritto nel bando ma necessario per mostre e catalogo): da far validare -->
+              <label class="ic-check">
+                <input type="checkbox" id="liberatoria" name="liberatoria" required>
+                <span>Autorizzo l’esposizione e la pubblicazione delle opere (mostre, catalogo e promozione del
+                  concorso), con l’indicazione del nome dell’autore o dell’autrice. *</span>
+              </label>
+              <label class="ic-check">
+                <input type="checkbox" id="privacy_iscrizione" name="privacy" required>
+                <span>Ho letto l’<a href="https://www.iubenda.com/privacy-policy/48086239" target="_blank"
+                    rel="noopener">informativa sulla privacy<span class="ic-sr-only"> (si apre in una nuova
+                      scheda)</span></a> e acconsento al trattamento dei dati. *</span>
+              </label>
+
+              <div class="ic-field ic-hp" aria-hidden="true">
+                <label for="sito_iscrizione">Non compilare</label>
+                <input type="text" id="sito_iscrizione" name="sito" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="ic-form-actions">
+                <button class="ic-btn ic-btn-primary" type="submit">Invia l’iscrizione</button>
+                <span class="ic-hint">I campi con * sono obbligatori.</span>
+              </div>
+              <div class="ic-form-status" id="ic-reg-status" tabindex="-1" role="status"></div>
+            </section>
+          </form>
+        </div>
+
+        <aside class="ic-card ic-side-card" aria-label="Cosa serve per iscriversi">
+          <h3>Da preparare</h3>
+          <ul class="ic-checklist">
+            <li>Dati anagrafici del partecipante</li>
+            <li>Illustrazione: A3 verticale, 300 DPI, massimo 20 MB</li>
+            <li>Poesia: PDF da 200 a 400 parole</li>
+            <li>Esordienti: ricevuta del bonifico di € 15,00</li>
+            <li>Minorenni: autorizzazione firmata da un genitore</li>
+          </ul>
+          <a class="ic-btn ic-btn-outline" href="bando.html">Leggi il bando</a>
+          <a class="ic-btn ic-btn-outline" href="download/bando-terza-edizione.pdf" download>Scarica il bando (PDF)</a>
+          <a class="ic-btn ic-btn-teal" href="index.html#contatti">Chiedi informazioni</a>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ===== WP: FINE CONTENUTO PAGINA ===== -->
+  </main>
+
+  <!-- ============ FOOTER (come illustramente.it) ============
+       In WordPress: concorso/parts/footer.php -->
+  <footer class="ic-footer">
+    <div class="ic-footer-top">
+      <div class="ic-container ic-footer-cols">
+
+        <div class="ic-footer-col">
+          <h2>Segreteria organizzativa di Illustramente</h2>
+          <a href="http://www.centroculturaleskene.it/" target="_blank" rel="noopener"
+            aria-label="Centro Culturale Skené (si apre in una nuova scheda)">
+            <img src="assets/img/logo-skene.webp" alt="Skené" width="78" height="48">
+          </a>
+        </div>
+
+        <div class="ic-footer-col">
+          <h2>Iscriviti al canale</h2>
+          <a href="https://www.youtube.com/user/Illustramente" target="_blank" rel="noopener"
+            aria-label="Canale YouTube di Illustramente (si apre in una nuova scheda)">
+            <img src="assets/img/logo-youtube.webp" alt="YouTube" width="143" height="44">
+          </a>
+        </div>
+
+        <div class="ic-footer-col ic-footer-policy">
+          <a class="ic-pill ic-pill-dark" href="https://www.iubenda.com/privacy-policy/48086239" target="_blank"
+            rel="noopener">Privacy Policy</a>
+          <a class="ic-pill ic-pill-light" href="https://www.iubenda.com/privacy-policy/48086239/cookie-policy"
+            target="_blank" rel="noopener">Cookie Policy</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="ic-footer-bottom-bar">
+      <div class="ic-container ic-footer-bottom-inner">
+        <p>
+          Direttore artistico: Rosanna Maranto<br>
+          Copyright © 2026 Illustramente | Tutti i diritti riservati<br>
+          Coloré Cooperativa Sociale | C/O Cantieri Culturali alla Zisa - Via Paolo Gili, 4 - Palermo<br>
+          P. IVA 05899650823<br>
+          Foto: <a href="https://www.fotographpalermo.it/" target="_blank" rel="noopener">Fotograph Palermo</a>
+        </p>
+
+        <div class="ic-footer-social">
+          <a href="https://www.facebook.com/Illustramente/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M14 8V6.5c0-.8.2-1.2 1.3-1.2H17V2.2C16.6 2.15 15.6 2 14.5 2 12 2 10.3 3.5 10.3 6.3V8H7.5v3.5h2.8V22H14V11.5h2.8L17.3 8H14z" />
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/user/Illustramente" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/illustramente.it/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
