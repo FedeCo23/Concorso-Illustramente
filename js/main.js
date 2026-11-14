@@ -286,7 +286,11 @@
     'tipo-mancante': function (f) { return !radioValue(f, 'tipo'); },
     'scuola': function (f) { return radioValue(f, 'tipo') === 'scuola'; },
     'esordiente': function (f) { return radioValue(f, 'tipo') === 'esordiente'; },
-    'minorenne': function (f) { var a = ageFrom(f.elements.data_nascita.value); return a !== null && a < 18; },
+    // Solo chi partecipa senza una scuola (esordiente): per le scuole il blocco non compare (Art. 5)
+    'minorenne': function (f) {
+      var a = ageFrom(f.elements.data_nascita.value);
+      return radioValue(f, 'tipo') === 'esordiente' && a !== null && a < 18;
+    },
     'cat-a': function (f) { return radioValue(f, 'cat_illustrazione') === 'A'; },
     'cat-b': function (f) { return radioValue(f, 'cat_illustrazione') === 'B'; },
     'illustrazione': function (f) { return ['A', 'B'].indexOf(radioValue(f, 'cat_illustrazione')) !== -1; },
@@ -310,9 +314,30 @@
     });
     // Almeno una categoria (A, B o C)
     var first = form.querySelector('input[name="cat_illustrazione"]');
-    var noCategory = radioValue(form, 'cat_illustrazione') === 'nessuna' && !form.elements.cat_poesia.checked;
-    first.setCustomValidity(noCategory ? 'Scegli almeno una categoria: illustrazione (A o B) e/o poesia (C).' : '');
+    var hasIllustration = ['A', 'B'].indexOf(radioValue(form, 'cat_illustrazione')) !== -1;
+    var hasPoetry = form.elements.cat_poesia.checked;
+    var categoryMsg = '';
+    if (radioValue(form, 'cat_illustrazione') === 'nessuna' && !hasPoetry) {
+      categoryMsg = 'Scegli almeno una categoria: illustrazione (A o B) e/o poesia (C).';
+    } else if (radioValue(form, 'tipo') === 'esordiente' && hasIllustration && hasPoetry) {
+      // Esordienti: una sola sezione per iscrizione; l'altra richiede una seconda iscrizione e una seconda quota
+      categoryMsg = 'Come esordiente puoi iscriverti a una sola sezione per volta: scegli illustrazione (A o B) oppure poesia (C). Per l’altra sezione compila una seconda iscrizione.';
+    }
+    first.setCustomValidity(categoryMsg);
     if (form.hasAttribute('data-submitted')) validateOne(first);
+  }
+
+  // Esordienti: una sola sezione per iscrizione (illustrazione oppure poesia).
+  // Scegliendo una sezione, l'altra viene deselezionata.
+  function enforceSingleSection(form, target) {
+    if (!target || radioValue(form, 'tipo') !== 'esordiente') return;
+    var poesia = form.elements.cat_poesia;
+    if (target === poesia && poesia.checked) {
+      var none = document.getElementById('cat-nessuna');
+      if (none) none.checked = true;
+    } else if (target.name === 'cat_illustrazione' && (target.value === 'A' || target.value === 'B')) {
+      poesia.checked = false;
+    }
   }
 
   function sizeMb(bytes) {
@@ -482,7 +507,10 @@
     initWordCounters(form);
     initCopyButtons(form);
     applyConditions(form);
-    form.addEventListener('change', function () { applyConditions(form); });
+    form.addEventListener('change', function (e) {
+      enforceSingleSection(form, e.target);
+      applyConditions(form);
+    });
     form.addEventListener('input', function (e) {
       if (e.target.name === 'data_nascita') applyConditions(form);
     });
@@ -498,6 +526,11 @@
           'Questa è una versione dimostrativa, quindi nessun dato è stato inviato.';
         status.appendChild(p);
         status.appendChild(registrationRecap(form));
+        if (radioValue(form, 'tipo') === 'esordiente') {
+          var reminder = document.createElement('p');
+          reminder.textContent = 'Ricorda: ogni iscrizione vale per una sola sezione. Per partecipare anche all’altra sezione compila una seconda iscrizione e versa una seconda quota di € 15,00.';
+          status.appendChild(reminder);
+        }
         status.classList.add('is-visible');
         status.focus();
       }
