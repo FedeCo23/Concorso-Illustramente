@@ -37,7 +37,7 @@
           <li class="ic-nav-home"><a href="https://www.illustramente.it/blog/">Torna alla homepage</a></li>
           <li><a href="index.html">Il concorso</a></li>
           <li><a href="bando.html">Il bando 2026/2027</a></li>
-          <li><a href="partner.html">I partner</a></li>
+          <li><a href="partner.html">Gli organizzatori</a></li>
           <li><a href="giuria.html">Le giurie</a></li>
           <li class="ic-nav-cta"><a href="iscriviti.html" aria-current="page">Iscriviti ora!</a></li>
         </ul>
@@ -54,8 +54,8 @@
       <div class="ic-container">
         <p class="ic-breadcrumb"><a href="index.html">Concorso 2026/2027</a> › Iscriviti</p>
         <h1>Iscriviti al concorso</h1>
-        <p class="ic-lead">Compila il modulo con i dati del partecipante e carica le opere. La data di chiusura delle
-          iscrizioni sarà comunicata dal comitato organizzativo.</p>
+        <p class="ic-lead">Compila il modulo con i dati del partecipante e carica le opere. Scadenza iscrizioni: ore
+          14:00 del 2 marzo 2027. Le istruzioni tecniche di upload saranno disponibili dal 29 gennaio 2027.</p>
       </div>
     </section>
 
@@ -69,14 +69,14 @@
           <div class="ic-card">
             <div class="ic-icon" aria-hidden="true">1</div>
             <h3>Leggi il bando</h3>
-            <p>Controlla requisiti e categorie: illustrazione in formato A3 verticale a 300 DPI, poesia in PDF da 200 a
-              400 parole.</p>
+            <p>Controlla requisiti e categorie: illustrazione in formato A3 (verticale o orizzontale) a 300 DPI,
+              poesia in PDF da 50 a 300 parole.</p>
           </div>
           <div class="ic-card">
             <div class="ic-icon" aria-hidden="true">2</div>
             <h3>Prepara i file</h3>
-            <p>L’opera e, se servono, la ricevuta del bonifico (esordienti) e l’autorizzazione firmata da un genitore
-              (minorenni).</p>
+            <p>L’opera e, se servono, la ricevuta del bonifico (esordienti) e l’autorizzazione scritta di chi esercita
+              la responsabilità genitoriale (minorenni singoli fuori dal contesto scolastico).</p>
           </div>
           <div class="ic-card">
             <div class="ic-icon" aria-hidden="true">3</div>
@@ -128,8 +128,8 @@
                     <input type="radio" name="tipo" id="tipo-esordiente" value="esordiente">
                     <span>
                       <span class="ic-choice-title">Esordiente / non professionista</span>
-                      <span class="ic-choice-desc">Chi non ha mai pubblicato opere edite. Contributo di partecipazione
-                        di € 15,00.</span>
+                      <span class="ic-choice-desc">Chi non ha pubblicato più di tre opere alla data di scadenza del
+                        bando. Contributo di partecipazione di € 15,00.</span>
                     </span>
                   </label>
                 </div>
@@ -179,7 +179,7 @@
                 <h4 class="ic-sub-title">Requisito per gli esordienti</h4>
                 <label class="ic-check">
                   <input type="checkbox" id="dich_non_professionista" name="dich_non_professionista" required>
-                  <span>Dichiaro di non aver mai pubblicato opere edite alla data di scadenza del bando (Art. 6). *</span>
+                  <span>Dichiaro di non aver pubblicato più di tre opere alla data di scadenza del bando (Art. 6). *</span>
                 </label>
               </div>
             </section>
@@ -255,8 +255,9 @@
 
               <div class="ic-sub" data-ic-show="minorenne" hidden>
                 <h4 class="ic-sub-title">Partecipante minorenne</h4>
-                <p class="ic-hint">Per i minorenni serve l’autorizzazione scritta di chi esercita la responsabilità
-                  genitoriale (Art. 5).</p>
+                <p class="ic-hint">I minorenni singoli fuori dal contesto scolastico devono essere iscritti da un
+                  maggiorenne, con autorizzazione scritta da chi esercita la responsabilità genitoriale da inviare
+                  contestualmente all’iscrizione (Art. 5).</p>
                 <div class="ic-form-row">
                   <div class="ic-field">
                     <label for="tutore_nome">Nome e cognome del genitore o tutore *</label>
@@ -336,6 +337,9 @@
 
               <div class="ic-sub" data-ic-show="illustrazione" hidden>
                 <h4 class="ic-sub-title">Illustrazione</h4>
+                <p class="ic-hint"><strong>Importante:</strong> nelle illustrazioni, qualora presenti, si richiede la
+                  corrispondenza scientifica nella rappresentazione o descrizione di specie presenti oggi o
+                  storicamente accertate nel Mediterraneo (Art. 3).</p>
                 <div class="ic-form-row">
                   <div class="ic-field">
                     <label for="ill_titolo">Titolo dell’opera *</label>
@@ -364,9 +368,11 @@
 
                 <div class="ic-field ic-file">
                   <label for="file_illustrazione">File dell’illustrazione *</label>
-                  <span class="ic-hint" id="hint-illustrazione">A3 verticale a 300 DPI (3508 × 4961 px), profilo
-                    colore RGB · JPG, PNG, TIFF o PDF · massimo 20 MB. Per le opere su carta carica la scansione a 300
-                    DPI.</span>
+                  <span class="ic-hint" id="hint-illustrazione">A3 (verticale o orizzontale, stesso formato) a 300 DPI
+                    (3508 × 4961 px oppure 4961 × 3508 px), profilo colore RGB · JPG, PNG, TIFF o PDF · massimo 20 MB.
+                    Per le opere su carta o cartoncino (grammatura non inferiore a 150 g/m²) carica la scansione a 300
+                    DPI. L’opera deve essere anonima: non deve contenere al suo interno nome e cognome di chi l’ha
+                    eseguita (Art. 4/b).</span>
                   <input type="file" id="file_illustrazione" name="file_illustrazione"
                     accept=".jpg,.jpeg,.png,.tif,.tiff,.pdf" data-max-mb="20" data-a3
                     aria-describedby="hint-illustrazione" required>
@@ -387,16 +393,18 @@
                 </div>
                 <div class="ic-field ic-file">
                   <label for="file_poesia">File della poesia *</label>
-                  <span class="ic-hint" id="hint-poesia">Solo PDF · massimo 5 MB</span>
+                  <span class="ic-hint" id="hint-poesia">Solo PDF · massimo 5 MB. La poesia deve essere anonima: non
+                    deve contenere al suo interno nome e cognome di chi l’ha scritta (Art. 4/b).</span>
                   <input type="file" id="file_poesia" name="file_poesia" accept=".pdf" data-max-mb="5"
                     aria-describedby="hint-poesia" required>
                 </div>
                 <div class="ic-field">
                   <label for="poesia_testo">Testo della poesia, senza titolo *</label>
-                  <span class="ic-hint" id="hint-testo">Incollalo qui: serve a verificare che sia tra 200 e 400 parole,
-                    esclusi i segni di interpunzione e il titolo (Art. 4/a).</span>
-                  <textarea id="poesia_testo" name="poesia_testo" rows="8" data-min-words="200"
-                    data-max-words="400" data-counter="poesia-counter" aria-describedby="hint-testo poesia-counter"
+                  <span class="ic-hint" id="hint-testo">Incollalo qui: serve a verificare che sia tra 50 e 300 parole
+                    (300/350–1.800/2.000 battute, spazi inclusi). Il titolo non rientra nel conteggio (Art.
+                    4/a).</span>
+                  <textarea id="poesia_testo" name="poesia_testo" rows="8" data-min-words="50"
+                    data-max-words="300" data-counter="poesia-counter" aria-describedby="hint-testo poesia-counter"
                     required></textarea>
                   <span class="ic-counter" id="poesia-counter" aria-live="polite"></span>
                 </div>
@@ -456,11 +464,13 @@
                 <span>Garantisco la titolarità e l’originalità delle opere inviate, che non sono mai state pubblicate
                   (Art. 12). *</span>
               </label>
-              <!-- Consenso suggerito (non scritto nel bando ma necessario per mostre e catalogo): da far validare -->
+              <!-- Testo allineato all'Art. 13 del bando -->
               <label class="ic-check">
                 <input type="checkbox" id="liberatoria" name="liberatoria" required>
-                <span>Autorizzo l’esposizione e la pubblicazione delle opere (mostre, catalogo e promozione del
-                  concorso), con l’indicazione del nome dell’autore o dell’autrice. *</span>
+                <span>Mantengo la piena proprietà intellettuale delle opere inviate e concedo agli Enti organizzatori
+                  il diritto gratuito di riproduzione, esposizione in mostra, pubblicazione su catalogo e diffusione
+                  sui canali istituzionali e stampa per le finalità culturali e promozionali legate al Concorso, con
+                  obbligo di citazione dell’autore o dell’autrice (Art. 13). *</span>
               </label>
               <label class="ic-check">
                 <input type="checkbox" id="privacy_iscrizione" name="privacy" required>
@@ -487,13 +497,16 @@
           <h3>Da preparare</h3>
           <ul class="ic-checklist">
             <li>Dati anagrafici del partecipante</li>
-            <li>Illustrazione: A3 verticale, 300 DPI, massimo 20 MB</li>
-            <li>Poesia: PDF da 200 a 400 parole</li>
+            <li>Illustrazione: A3 verticale o orizzontale, 300 DPI, massimo 20 MB</li>
+            <li>Poesia: PDF da 50 a 300 parole</li>
+            <li>Opere anonime, senza nome e cognome dell’autore</li>
             <li>Esordienti: ricevuta del bonifico di € 15,00</li>
-            <li>Minorenni: autorizzazione firmata da un genitore</li>
+            <li>Minorenni singoli fuori dalla scuola: autorizzazione scritta di chi esercita la responsabilità
+              genitoriale</li>
+            <li>Scadenza iscrizioni: ore 14:00 del 2 marzo 2027</li>
           </ul>
           <a class="ic-btn ic-btn-outline" href="bando.html">Leggi il bando</a>
-          <a class="ic-btn ic-btn-outline" href="download/bando-terza-edizione.pdf" download>Scarica il bando (PDF)</a>
+          <a class="ic-btn ic-btn-outline" href="download/BANDO-AL-14-NOVEMBRE-2026.pdf" download>Scarica il bando (PDF)</a>
           <a class="ic-btn ic-btn-teal" href="index.html#contatti">Chiedi informazioni</a>
         </aside>
 

@@ -261,7 +261,8 @@
   }
 
   /* ---------- 3. Modulo di iscrizione ---------- */
-  var A3 = { w: 3508, h: 4961, tolerance: 0.02 }; // A3 verticale a 300 DPI
+  // A3 a 300 DPI: 3508 × 4961 px. Art. 3/a: orientamento verticale o orizzontale, stesso formato.
+  var A3 = { w: 3508, h: 4961, tolerance: 0.02 };
 
   function radioValue(form, name) {
     var r = form.querySelector('input[name="' + name + '"]:checked');
@@ -327,11 +328,13 @@
         var h = img.naturalHeight;
         URL.revokeObjectURL(url);
         var dims = w + ' × ' + h + ' px';
-        if (w > h) return resolve({ msg: 'L’illustrazione deve essere in verticale (A3 verticale). Il file è ' + dims + '.' });
-        if (w < A3.w * (1 - A3.tolerance) || h < A3.h * (1 - A3.tolerance)) {
-          return resolve({ msg: 'Il file è ' + dims + ': per un A3 a 300 DPI servono almeno ' + A3.w + ' × ' + A3.h + ' px.' });
+        // Verticale o orizzontale: si confrontano lato corto e lato lungo
+        var shortSide = Math.min(w, h);
+        var longSide = Math.max(w, h);
+        if (shortSide < A3.w * (1 - A3.tolerance) || longSide < A3.h * (1 - A3.tolerance)) {
+          return resolve({ msg: 'Il file è ' + dims + ': per un A3 a 300 DPI servono almeno ' + A3.w + ' × ' + A3.h + ' px (o ' + A3.h + ' × ' + A3.w + ' px in orizzontale).' });
         }
-        if (Math.abs(h / w - A3.h / A3.w) > 0.045) {
+        if (Math.abs(longSide / shortSide - A3.h / A3.w) > 0.045) {
           return resolve({ msg: 'Le proporzioni (' + dims + ') non corrispondono a un foglio A3 (29,7 × 42 cm).' });
         }
         resolve({ msg: '', dims: dims });
@@ -389,7 +392,7 @@
   }
 
   function countWords(text) {
-    // Le parole si contano esclusi i segni di interpunzione (Art. 4/a)
+    // Conta le parole (Art. 4/a: da 50 a 300): i segni di punteggiatura isolati non contano come parole
     return text
       .replace(/[^\p{L}\p{N}\s'’-]/gu, ' ')
       .split(/\s+/)
